@@ -17,7 +17,7 @@ open_solution "solution1"
 set_part {xc7k325tffg900-2} -tool vivado
 create_clock -period 5 -name default
 source "./accelerator/solution1/directives.tcl"
-csim_design -compiler gcc -setup
+csim_design -compiler gcc
 csynth_design
 cosim_design
 export_design -rtl verilog -format ip_catalog

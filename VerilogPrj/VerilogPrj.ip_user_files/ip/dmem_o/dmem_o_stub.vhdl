@@ -1,7 +1,7 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Mon Oct 23 20:51:36 2017
+-- Date        : Fri Oct 27 16:06:29 2017
 -- Host        : T3400 running 64-bit Ubuntu 14.04.5 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.srcs/sources_1/ip/dmem_o/dmem_o_stub.vhdl

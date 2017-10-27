@@ -30,20 +30,20 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="kc705"/>
     <Option Name="DSANumComputeUnits" Val="16"/>
-    <Option Name="WTXSimLaunchSim" Val="0"/>
+    <Option Name="WTXSimLaunchSim" Val="13"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="8"/>
-    <Option Name="WTModelSimExportSim" Val="8"/>
-    <Option Name="WTQuestaExportSim" Val="8"/>
-    <Option Name="WTIesExportSim" Val="8"/>
-    <Option Name="WTVcsExportSim" Val="8"/>
-    <Option Name="WTRivieraExportSim" Val="8"/>
-    <Option Name="WTActivehdlExportSim" Val="8"/>
+    <Option Name="WTXSimExportSim" Val="9"/>
+    <Option Name="WTModelSimExportSim" Val="9"/>
+    <Option Name="WTQuestaExportSim" Val="9"/>
+    <Option Name="WTIesExportSim" Val="9"/>
+    <Option Name="WTVcsExportSim" Val="9"/>
+    <Option Name="WTRivieraExportSim" Val="9"/>
+    <Option Name="WTActivehdlExportSim" Val="9"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -161,11 +161,11 @@
         </FileInfo>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o_sim_netlist.vhdl"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o_sim_netlist.v"/>
+        <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o_stub.vhdl"/>
+        <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o_stub.v"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="misc/blk_mem_gen_v8_3.vhd"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="summary.log"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="doc/blk_mem_gen_v8_3_changelog.txt"/>
-        <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o_stub.vhdl"/>
-        <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o_stub.v"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o.veo"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="dmem_o.vho"/>
         <CompFileExtendedInfo CompFileName="dmem_o.xci" FileRelPathName="synth/dmem_o.vhd"/>

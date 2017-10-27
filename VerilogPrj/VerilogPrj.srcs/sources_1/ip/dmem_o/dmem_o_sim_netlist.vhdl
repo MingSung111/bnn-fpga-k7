@@ -1,7 +1,7 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Mon Oct 23 20:51:36 2017
+-- Date        : Fri Oct 27 16:06:30 2017
 -- Host        : T3400 running 64-bit Ubuntu 14.04.5 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.srcs/sources_1/ip/dmem_o/dmem_o_sim_netlist.vhdl
@@ -220,8 +220,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 36,
       WRITE_WIDTH_B => 36
     )
@@ -510,7 +510,7 @@ entity dmem_o_blk_mem_gen_v8_3_5 is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of dmem_o_blk_mem_gen_v8_3_5 : entity is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of dmem_o_blk_mem_gen_v8_3_5 : entity is "Estimated Power for IP     :     6.700549 mW";
+  attribute C_EST_POWER_SUMMARY of dmem_o_blk_mem_gen_v8_3_5 : entity is "Estimated Power for IP     :     6.371475 mW";
   attribute C_FAMILY : string;
   attribute C_FAMILY of dmem_o_blk_mem_gen_v8_3_5 : entity is "kintex7";
   attribute C_HAS_AXI_ID : integer;
@@ -600,7 +600,7 @@ entity dmem_o_blk_mem_gen_v8_3_5 is
   attribute C_WRITE_DEPTH_B : integer;
   attribute C_WRITE_DEPTH_B of dmem_o_blk_mem_gen_v8_3_5 : entity is 128;
   attribute C_WRITE_MODE_A : string;
-  attribute C_WRITE_MODE_A of dmem_o_blk_mem_gen_v8_3_5 : entity is "WRITE_FIRST";
+  attribute C_WRITE_MODE_A of dmem_o_blk_mem_gen_v8_3_5 : entity is "NO_CHANGE";
   attribute C_WRITE_MODE_B : string;
   attribute C_WRITE_MODE_B of dmem_o_blk_mem_gen_v8_3_5 : entity is "WRITE_FIRST";
   attribute C_WRITE_WIDTH_A : integer;
@@ -889,7 +889,7 @@ architecture STRUCTURE of dmem_o is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of U0 : label is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     6.700549 mW";
+  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     6.371475 mW";
   attribute C_FAMILY : string;
   attribute C_FAMILY of U0 : label is "kintex7";
   attribute C_HAS_AXI_ID : integer;
@@ -979,7 +979,7 @@ architecture STRUCTURE of dmem_o is
   attribute C_WRITE_DEPTH_B : integer;
   attribute C_WRITE_DEPTH_B of U0 : label is 128;
   attribute C_WRITE_MODE_A : string;
-  attribute C_WRITE_MODE_A of U0 : label is "WRITE_FIRST";
+  attribute C_WRITE_MODE_A of U0 : label is "NO_CHANGE";
   attribute C_WRITE_MODE_B : string;
   attribute C_WRITE_MODE_B of U0 : label is "WRITE_FIRST";
   attribute C_WRITE_WIDTH_A : integer;

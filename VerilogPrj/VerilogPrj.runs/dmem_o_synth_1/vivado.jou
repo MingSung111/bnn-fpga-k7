@@ -2,8 +2,8 @@
 # Vivado v2016.4 (64-bit)
 # SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
 # IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
-# Start of session at: Mon Oct 23 20:49:22 2017
-# Process ID: 11455
+# Start of session at: Fri Oct 27 16:03:50 2017
+# Process ID: 11794
 # Current directory: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/dmem_o_synth_1
 # Command line: vivado -log dmem_o.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dmem_o.tcl
 # Log file: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/dmem_o_synth_1/dmem_o.vds

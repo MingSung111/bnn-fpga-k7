@@ -219,62 +219,49 @@ void test_conv_layer(
     const ap_uint<1> conv_mode, // 0=conv1, 1=conv
     const ap_uint<1> max_pool
 ){
-  printf ("#### Testing convolution with %u inputs, width %u ####\n", M, Si);
-  unsigned So = max_pool ? Si/2 : Si;
-  unsigned input_words = conv_mode==0 ? Si * Si : M * Si * Si / WORD_SIZE; // if conv1 layer, each pixel is 20bit. So one word contains three pixels from three channels
-  unsigned output_words = N * So * So / WORD_SIZE;
-  if (output_words < 1) output_words = 1;
-  assert (input_words <= DMEM_WORDS);
-  //assert (output_words <= DMEM_O_WORDS);
+	printf ("#### Testing convolution with %u inputs, width %u ####\n", M, Si);
+	unsigned So = max_pool ? Si/2 : Si;
+	unsigned input_words = conv_mode==0 ? Si * Si : M * Si * Si / WORD_SIZE; // if conv1 layer, each pixel is 20bit. So one word contains three pixels from three channels
+	unsigned output_words = N * So * So / WORD_SIZE;
+	if (output_words < 1) output_words = 1;
+	assert (input_words <= DMEM_WORDS);
+	//assert (output_words <= DMEM_O_WORDS);
 
-  printf ("*data*:\n");
-  print_bits3d(data_i, 0, 1, Si, 6,Si);
-  printf ("*params*:\n");
-  print_params3d(weights, 0, 15);
+	printf ("*data*:\n");
+	print_bits3d(data_i, 0, 1, Si, 6,Si);
+	printf ("*params*:\n");
+	print_params3d(weights, 0, 15);
 
-  AccelSchedule sched;
-  compute_accel_schedule(
-      weights, kh,
-      M, N, Si,
-      conv_mode.to_int(),
-      max_pool,
-      sched
-  );
+	AccelSchedule sched;
+	compute_accel_schedule(weights, kh, M, N, Si, conv_mode.to_int(), max_pool, sched);
 
-  run_accel_schedule(
-      data_i, data_o,
-      0,      // layer_idx
-      input_words,
-      output_words,
-      0,      // dmem_mode
-      sched
-  );
+	run_accel_schedule(data_i, data_o, 0, input_words, output_words, 0, sched);
 
-  // print results
-  printf ("*bin out*:\n");
-  print_bits3d(data_o, 0, 1, So, 8,So);
-  printf ("*bin ref*:\n");
-  print_bits3d(bin_ref, 0, 1, So, 8,So);
+	// print results
+	printf ("*bin out*:\n");
+	print_bits3d(data_o, 0, 1, So, 8,So);
+	printf ("*bin ref*:\n");
+	print_bits3d(bin_ref, 0, 1, So, 8,So);
 
-  // Compare bin results
-  printf ("## Checking results ##\n");
-  unsigned n_err = 0;
-  for (unsigned n = 0; n < N; ++n) {
-    for (unsigned r = 0; r < So; ++r) {
-      for (unsigned c = 0; c < So; ++c) {
-        if (get_bit(data_o, n*So*So+r*So+c) != get_bit(bin_ref, n*So*So+r*So+c)) {
-          n_err++;
-          //printf ("bin out != ref at n=%d, (%d,%d)\n", n, r,c);
-          //if (n_err > 64) exit(-1);
-        }
-      }
-    }
-  }
-  float err_rate = float(n_err) / (N*So*So)*100;
-  printf ("Error rate: %7.4f%%\n", err_rate);
-  printf ("test point 5\n");
-  assert(err_rate < 1.0);
-  printf ("test point 6\n");
+	// Compare bin results
+	printf ("## Checking results ##\n");
+	unsigned n_err = 0;
+	for (unsigned n = 0; n < N; ++n) {
+		for (unsigned r = 0; r < So; ++r) {
+			for (unsigned c = 0; c < So; ++c) {
+				if (get_bit(data_o, n*So*So+r*So+c) != get_bit(bin_ref, n*So*So+r*So+c)) {
+					n_err++;
+					//printf ("bin out != ref at n=%d, (%d,%d)\n", n, r,c);
+					//if (n_err > 64) exit(-1);
+				}
+			}
+		}
+	}
+	float err_rate = float(n_err) / (N*So*So)*100;
+	printf ("Error rate: %7.4f%%\n", err_rate);
+	printf ("test point 5\n");
+	assert(err_rate < 1.0);
+	printf ("test point 6\n");
 }
 
 //------------------------------------------------------------------------

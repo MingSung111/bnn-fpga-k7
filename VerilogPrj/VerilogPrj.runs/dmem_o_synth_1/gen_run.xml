@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="dmem_o_synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1508806162">
+<GenRun Id="dmem_o_synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1509134629">
   <File Type="VDS-TIMING-PB" Name="dmem_o_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="dmem_o_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="dmem_o.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="dmem_o_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="dmem_o_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="dmem_o_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="dmem_o.vds"/>
   <File Type="PA-TCL" Name="dmem_o.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="dmem_o_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="dmem_o_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="dmem_o_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="dmem_o.dcp"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/dmem_o">
     <File Path="$PSRCDIR/sources_1/ip/dmem_o/dmem_o.xci">
       <FileInfo>

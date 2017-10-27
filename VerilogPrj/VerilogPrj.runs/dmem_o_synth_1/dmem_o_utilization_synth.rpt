@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-| Date         : Mon Oct 23 20:51:35 2017
+| Date         : Fri Oct 27 16:06:29 2017
 | Host         : T3400 running 64-bit Ubuntu 14.04.5 LTS
 | Command      : report_utilization -file dmem_o_utilization_synth.rpt -pb dmem_o_utilization_synth.pb
 | Design       : dmem_o

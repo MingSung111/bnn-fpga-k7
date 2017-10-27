@@ -1,0 +1,1335 @@
+
+
+================================================================
+== Vivado HLS Report for 'top'
+================================================================
+* Date:           Mon Oct 23 16:49:05 2017
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        accelerator
+* Solution:       solution1
+* Product family: kintex7
+* Target device:  xc7k325tffg900-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   5.00|      4.95|        0.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+-------+------+-------+---------+
+    |    Latency   |   Interval   | Pipeline|
+    |  min |  max  |  min |  max  |   Type  |
+    +------+-------+------+-------+---------+
+    |  4776|  42728|  4777|  42729|   none  |
+    +------+-------+------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------------+------+-------+------------+-----------+-----------+---------+----------+
+        |                  |    Latency   |  Iteration |  Initiation Interval  |   Trip  |          |
+        |     Loop Name    |  min |  max  |   Latency  |  achieved |   target  |  Count  | Pipelined|
+        +------------------+------+-------+------------+-----------+-----------+---------+----------+
+        |- LOOP_DMEM_I     |     1|    512|           2|          1|          1| 1 ~ 512 |    yes   |
+        |- LOOP_WT_I       |  4682|   4682|           2|          1|          1|     4682|    yes   |
+        |- LOOP_KH_I       |    64|     64|           2|          1|          1|       64|    yes   |
+        |- LOOP_IMG_BATCH  |    92|  37457| 92 ~ 37457 |          -|          -|        1|    no    |
+        |- LOOP_DMEM_O     |     4|      4|           5|          1|          1|        1|    yes   |
+        +------------------+------+-------+------------+-----------+-----------+---------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+  * Pipeline-1: initiation interval (II) = 1, depth = 2
+  * Pipeline-2: initiation interval (II) = 1, depth = 2
+  * Pipeline-3: initiation interval (II) = 1, depth = 5
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 20
+* Pipeline: 4
+  Pipeline-0: II = 1, D = 2, States = { 2 3 }
+  Pipeline-1: II = 1, D = 2, States = { 5 6 }
+  Pipeline-2: II = 1, D = 2, States = { 8 9 }
+  Pipeline-3: II = 1, D = 5, States = { 15 16 17 18 19 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	4  / (exitcond1)
+	3  / (!exitcond1)
+3 --> 
+	2  / true
+4 --> 
+	5  / true
+5 --> 
+	7  / (tmp_6)
+	6  / (!tmp_6)
+6 --> 
+	5  / true
+7 --> 
+	8  / true
+8 --> 
+	10  / (tmp_9)
+	9  / (!tmp_9)
+9 --> 
+	8  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / (tmp_3 & !tmp_5 & tmp_20)
+	15  / (!tmp_3) | (tmp_5) | (!tmp_20)
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	11  / true
+15 --> 
+	20  / (exitcond)
+	16  / (!exitcond)
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	15  / true
+20 --> 
+* FSM state operations: 
+
+ <State 1>: 0.89ns
+ST_1: StgValue_21 (25)  [1/1] 0.00ns
+._crit_edge:0  call void (...)* @_ssdm_op_SpecBitsMap([4682 x i64]* %wt_i_V), !map !588
+
+ST_1: StgValue_22 (26)  [1/1] 0.00ns
+._crit_edge:1  call void (...)* @_ssdm_op_SpecBitsMap([64 x i64]* %kh_i_V), !map !594
+
+ST_1: StgValue_23 (27)  [1/1] 0.00ns
+._crit_edge:2  call void (...)* @_ssdm_op_SpecBitsMap([2048 x i64]* %dmem_i_V), !map !600
+
+ST_1: StgValue_24 (28)  [1/1] 0.00ns
+._crit_edge:3  call void (...)* @_ssdm_op_SpecBitsMap([128 x i64]* %dmem_o_V), !map !606
+
+ST_1: StgValue_25 (29)  [1/1] 0.00ns
+._crit_edge:4  call void (...)* @_ssdm_op_SpecBitsMap(i16 %n_inputs_V), !map !612
+
+ST_1: StgValue_26 (30)  [1/1] 0.00ns
+._crit_edge:5  call void (...)* @_ssdm_op_SpecBitsMap(i16 %n_outputs_V), !map !618
+
+ST_1: StgValue_27 (31)  [1/1] 0.00ns
+._crit_edge:6  call void (...)* @_ssdm_op_SpecBitsMap(i16 %input_words_V), !map !622
+
+ST_1: StgValue_28 (32)  [1/1] 0.00ns
+._crit_edge:7  call void (...)* @_ssdm_op_SpecBitsMap(i16 %output_words_V), !map !626
+
+ST_1: StgValue_29 (33)  [1/1] 0.00ns
+._crit_edge:8  call void (...)* @_ssdm_op_SpecBitsMap(i3 %layer_mode_V), !map !630
+
+ST_1: StgValue_30 (34)  [1/1] 0.00ns
+._crit_edge:9  call void (...)* @_ssdm_op_SpecBitsMap(i1 %dmem_mode_V), !map !634
+
+ST_1: StgValue_31 (35)  [1/1] 0.00ns
+._crit_edge:10  call void (...)* @_ssdm_op_SpecBitsMap(i2 %width_mode_V), !map !638
+
+ST_1: StgValue_32 (36)  [1/1] 0.00ns
+._crit_edge:11  call void (...)* @_ssdm_op_SpecBitsMap(i2 %norm_mode_V), !map !642
+
+ST_1: StgValue_33 (37)  [1/1] 0.00ns
+._crit_edge:12  call void (...)* @_ssdm_op_SpecTopModule([4 x i8]* @top_str) nounwind
+
+ST_1: norm_mode_V_read (38)  [1/1] 0.00ns
+._crit_edge:13  %norm_mode_V_read = call i2 @_ssdm_op_Read.ap_auto.i2(i2 %norm_mode_V)
+
+ST_1: width_mode_V_read (39)  [1/1] 0.00ns
+._crit_edge:14  %width_mode_V_read = call i2 @_ssdm_op_Read.ap_auto.i2(i2 %width_mode_V)
+
+ST_1: dmem_mode_V_read (40)  [1/1] 0.00ns
+._crit_edge:15  %dmem_mode_V_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %dmem_mode_V)
+
+ST_1: layer_mode_V_read (41)  [1/1] 0.00ns
+._crit_edge:16  %layer_mode_V_read = call i3 @_ssdm_op_Read.ap_auto.i3(i3 %layer_mode_V)
+
+ST_1: output_words_V_read (42)  [1/1] 0.00ns
+._crit_edge:17  %output_words_V_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %output_words_V)
+
+ST_1: input_words_V_read (43)  [1/1] 0.00ns
+._crit_edge:18  %input_words_V_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %input_words_V)
+
+ST_1: n_outputs_V_read (44)  [1/1] 0.00ns
+._crit_edge:19  %n_outputs_V_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %n_outputs_V)
+
+ST_1: n_inputs_V_read (45)  [1/1] 0.00ns
+._crit_edge:20  %n_inputs_V_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %n_inputs_V)
+
+ST_1: layer_type_V (46)  [1/1] 0.00ns  loc: Accel.cpp:700
+._crit_edge:21  %layer_type_V = call i2 @_ssdm_op_PartSelect.i2.i3.i32.i32(i3 %layer_mode_V_read, i32 1, i32 2)
+
+ST_1: tmp_32 (47)  [1/1] 0.00ns  loc: Accel.cpp:707
+._crit_edge:22  %tmp_32 = trunc i3 %layer_mode_V_read to i1
+
+ST_1: StgValue_44 (48)  [1/1] 0.00ns  loc: Accel.cpp:725
+._crit_edge:23  br i1 %tmp_32, label %0, label %1
+
+ST_1: p_Val2_s (50)  [1/1] 0.00ns  loc: Accel.cpp:729
+:0  %p_Val2_s = load i16* @kh_index_V, align 2
+
+ST_1: tmp_33 (51)  [1/1] 0.00ns  loc: Accel.cpp:729
+:1  %tmp_33 = trunc i16 %p_Val2_s to i1
+
+ST_1: p_Result_s (52)  [1/1] 0.00ns  loc: Accel.cpp:729
+:2  %p_Result_s = zext i1 %tmp_33 to i16
+
+ST_1: StgValue_48 (53)  [1/1] 0.89ns  loc: Accel.cpp:729
+:3  store i16 %p_Result_s, i16* @kh_index_V, align 2
+
+ST_1: StgValue_49 (54)  [1/1] 0.89ns
+:4  br label %2
+
+ST_1: StgValue_50 (56)  [1/1] 0.89ns  loc: Accel.cpp:726
+:0  store i16 0, i16* @kh_index_V, align 2
+
+ST_1: StgValue_51 (57)  [1/1] 0.89ns  loc: Accel.cpp:727
+:1  store i16 0, i16* @o_index_V, align 2
+
+ST_1: StgValue_52 (58)  [1/1] 0.89ns  loc: Accel.cpp:728
+:2  br label %2
+
+ST_1: p_9 (60)  [1/1] 0.00ns  loc: Accel.cpp:729
+:0  %p_9 = phi i1 [ %tmp_33, %1 ], [ false, %0 ]
+
+ST_1: d_o_idx_V (61)  [1/1] 0.71ns  loc: Accel.cpp:733
+:1  %d_o_idx_V = xor i1 %dmem_mode_V_read, true
+
+ST_1: tmp_s (62)  [1/1] 0.00ns  loc: Accel.cpp:736
+:2  %tmp_s = call i3 @_ssdm_op_BitConcatenate.i3.i2.i1(i2 %width_mode_V_read, i1 false)
+
+ST_1: tmp_cast1 (63)  [1/1] 0.00ns  loc: Accel.cpp:736
+:3  %tmp_cast1 = zext i3 %tmp_s to i16
+
+ST_1: tmp_cast (64)  [1/1] 0.00ns  loc: Accel.cpp:736
+:4  %tmp_cast = zext i3 %tmp_s to i5
+
+ST_1: words_per_image_V (65)  [1/1] 0.82ns  loc: Accel.cpp:736
+:5  %words_per_image_V = shl i5 1, %tmp_cast
+
+ST_1: tmp_3 (66)  [1/1] 0.76ns  loc: Accel.cpp:740
+:6  %tmp_3 = icmp eq i2 %layer_type_V, 1
+
+ST_1: tmp_4_cast (67)  [1/1] 0.00ns  loc: Accel.cpp:745
+:7  %tmp_4_cast = zext i5 %words_per_image_V to i11
+
+ST_1: tmp_5 (68)  [1/1] 0.76ns  loc: Accel.cpp:745
+:8  %tmp_5 = icmp eq i2 %layer_type_V, 0
+
+ST_1: StgValue_62 (69)  [1/1] 0.89ns  loc: Accel.cpp:739
+:9  br label %3
+
+
+ <State 2>: 3.33ns
+ST_2: p_1 (71)  [1/1] 0.00ns  loc: Accel.cpp:750
+:0  %p_1 = phi i16 [ 0, %2 ], [ %p_s, %11 ]
+
+ST_2: p_2 (72)  [1/1] 0.00ns  loc: Accel.cpp:750
+:1  %p_2 = phi i10 [ 0, %2 ], [ %p_s_42, %11 ]
+
+ST_2: p_4 (73)  [1/1] 0.00ns
+:2  %p_4 = phi i16 [ 0, %2 ], [ %i_V_2, %11 ]
+
+ST_2: exitcond1 (74)  [1/1] 1.26ns  loc: Accel.cpp:739
+:3  %exitcond1 = icmp eq i16 %p_4, %input_words_V_read
+
+ST_2: i_V_2 (75)  [1/1] 1.36ns  loc: Accel.cpp:739
+:4  %i_V_2 = add i16 %p_4, 1
+
+ST_2: StgValue_68 (76)  [1/1] 0.00ns  loc: Accel.cpp:739
+:5  br i1 %exitcond1, label %.preheader1202.preheader, label %4
+
+ST_2: r_V_10 (78)  [1/1] 0.00ns  loc: Accel.cpp:739
+:0  %r_V_10 = trunc i16 %p_4 to i10
+
+ST_2: StgValue_70 (79)  [1/1] 0.00ns  loc: Accel.cpp:739
+:1  call void (...)* @_ssdm_op_SpecLoopName([12 x i8]* @p_str1860) nounwind
+
+ST_2: tmp_8 (80)  [1/1] 0.00ns  loc: Accel.cpp:739
+:2  %tmp_8 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str1860)
+
+ST_2: StgValue_72 (81)  [1/1] 0.00ns  loc: Accel.cpp:740
+:3  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 512, i32 256, [1 x i8]* @p_str1813) nounwind
+
+ST_2: StgValue_73 (82)  [1/1] 0.00ns  loc: Accel.cpp:740
+:4  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1813) nounwind
+
+ST_2: StgValue_74 (83)  [1/1] 0.00ns  loc: Accel.cpp:740
+:5  br i1 %tmp_3, label %_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit, label %5
+
+ST_2: StgValue_75 (85)  [1/1] 0.00ns  loc: Accel.cpp:745
+:0  br i1 %tmp_5, label %6, label %8
+
+ST_2: r_V_6 (87)  [1/1] 0.00ns  loc: Accel.cpp:748
+:0  %r_V_6 = call i15 @_ssdm_op_PartSelect.i15.i16.i32.i32(i16 %p_4, i32 1, i32 15)
+
+ST_2: tmp_14 (89)  [1/1] 0.00ns  loc: Accel.cpp:748
+:2  %tmp_14 = zext i16 %p_4 to i64
+
+ST_2: dmem_i_V_addr_2 (90)  [1/1] 0.00ns  loc: Accel.cpp:748
+:3  %dmem_i_V_addr_2 = getelementptr [2048 x i64]* %dmem_i_V, i64 0, i64 %tmp_14
+
+ST_2: dmem_i_V_load_1 (91)  [2/2] 2.05ns  loc: Accel.cpp:748
+:4  %dmem_i_V_load_1 = load i64* %dmem_i_V_addr_2, align 8
+
+ST_2: tmp_38 (92)  [1/1] 0.00ns  loc: Accel.cpp:739
+:5  %tmp_38 = trunc i16 %p_4 to i1
+
+ST_2: StgValue_81 (99)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch4:0  br i1 %tmp_38, label %branch17, label %branch16
+
+ST_2: StgValue_82 (107)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch447:0  br label %9
+
+ST_2: StgValue_83 (109)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch5:0  br i1 %tmp_38, label %branch27, label %branch26
+
+ST_2: StgValue_84 (117)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch572:0  br label %9
+
+ST_2: StgValue_85 (119)  [1/1] 0.00ns
+:0  br label %10
+
+ST_2: tmp_12 (122)  [1/1] 0.00ns  loc: Accel.cpp:746
+:1  %tmp_12 = zext i16 %p_4 to i64
+
+ST_2: dmem_i_V_addr_1 (123)  [1/1] 0.00ns  loc: Accel.cpp:746
+:2  %dmem_i_V_addr_1 = getelementptr [2048 x i64]* %dmem_i_V, i64 0, i64 %tmp_12
+
+ST_2: dmem_i_V_load (124)  [2/2] 2.05ns  loc: Accel.cpp:746
+:3  %dmem_i_V_load = load i64* %dmem_i_V_addr_1, align 8
+
+ST_2: tmp_37 (125)  [1/1] 0.00ns  loc: Accel.cpp:739
+:4  %tmp_37 = call i1 @_ssdm_op_BitSelect.i1.i16.i32(i16 %p_4, i32 10)
+
+ST_2: StgValue_90 (132)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch6:0  br i1 %tmp_37, label %branch15, label %branch14
+
+ST_2: StgValue_91 (140)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch644:0  br label %7
+
+ST_2: StgValue_92 (142)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch7:0  br i1 %tmp_37, label %branch25, label %branch24
+
+ST_2: StgValue_93 (150)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch768:0  br label %7
+
+ST_2: StgValue_94 (152)  [1/1] 0.00ns  loc: Accel.cpp:746
+:0  br label %10
+
+ST_2: StgValue_95 (154)  [1/1] 0.00ns
+:0  br label %11
+
+ST_2: r_V_s (156)  [1/1] 0.00ns  loc: Accel.cpp:742 (grouped into LUT with out node r_V_3)
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:0  %r_V_s = call i15 @_ssdm_op_PartSelect.i15.i16.i32.i32(i16 %p_1, i32 1, i32 15)
+
+ST_2: r_V_11 (157)  [1/1] 0.00ns  loc: Accel.cpp:742 (grouped into LUT with out node r_V_3)
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:1  %r_V_11 = zext i15 %r_V_s to i16
+
+ST_2: r_V_2 (158)  [1/1] 0.00ns  loc: Accel.cpp:743 (grouped into LUT with out node r_V_3)
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:2  %r_V_2 = shl i16 %r_V_11, %tmp_cast1
+
+ST_2: lhs_V (159)  [1/1] 0.00ns  loc: Accel.cpp:743 (grouped into LUT with out node r_V_3)
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:3  %lhs_V = zext i16 %r_V_2 to i17
+
+ST_2: rhs_V (160)  [1/1] 0.00ns  loc: Accel.cpp:743 (grouped into LUT with out node r_V_3)
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:4  %rhs_V = zext i10 %p_2 to i17
+
+ST_2: r_V_3 (161)  [1/1] 1.98ns  loc: Accel.cpp:743 (out node of the LUT)
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:5  %r_V_3 = add i17 %rhs_V, %lhs_V
+
+ST_2: tmp_4 (163)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:7  %tmp_4 = zext i16 %p_4 to i64
+
+ST_2: dmem_i_V_addr (164)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:8  %dmem_i_V_addr = getelementptr [2048 x i64]* %dmem_i_V, i64 0, i64 %tmp_4
+
+ST_2: dmem_i_V_load_2 (165)  [2/2] 2.05ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:9  %dmem_i_V_load_2 = load i64* %dmem_i_V_addr, align 8
+
+ST_2: tmp_35 (166)  [1/1] 0.00ns  loc: Accel.cpp:750
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:10  %tmp_35 = trunc i16 %p_1 to i1
+
+ST_2: StgValue_106 (173)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch8:0  br i1 %tmp_35, label %branch13, label %branch12
+
+ST_2: StgValue_107 (181)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch841:0  br label %_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit32
+
+ST_2: StgValue_108 (183)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch9:0  br i1 %tmp_35, label %branch23, label %branch22
+
+ST_2: StgValue_109 (191)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch964:0  br label %_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit32
+
+ST_2: StgValue_110 (193)  [1/1] 0.00ns  loc: Accel.cpp:744
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit32:0  br label %11
+
+ST_2: img_off_V (195)  [1/1] 1.30ns  loc: Accel.cpp:750
+:0  %img_off_V = add i10 %p_2, 1
+
+ST_2: tmp_34_cast (196)  [1/1] 0.00ns  loc: Accel.cpp:750
+:1  %tmp_34_cast = zext i10 %img_off_V to i11
+
+ST_2: tmp_24 (197)  [1/1] 1.32ns  loc: Accel.cpp:750
+:2  %tmp_24 = icmp eq i11 %tmp_34_cast, %tmp_4_cast
+
+ST_2: img_idx_V (198)  [1/1] 1.36ns  loc: Accel.cpp:752
+:3  %img_idx_V = add i16 %p_1, 1
+
+ST_2: p_s (199)  [1/1] 0.71ns  loc: Accel.cpp:750
+:4  %p_s = select i1 %tmp_24, i16 %img_idx_V, i16 %p_1
+
+ST_2: p_s_42 (200)  [1/1] 0.71ns  loc: Accel.cpp:750
+:5  %p_s_42 = select i1 %tmp_24, i10 0, i10 %img_off_V
+
+ST_2: empty (201)  [1/1] 0.00ns  loc: Accel.cpp:754
+:6  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str1860, i32 %tmp_8)
+
+ST_2: StgValue_118 (202)  [1/1] 0.00ns  loc: Accel.cpp:739
+:7  br label %3
+
+
+ <State 3>: 4.10ns
+ST_3: tmp_13 (88)  [1/1] 0.00ns  loc: Accel.cpp:748
+:1  %tmp_13 = zext i15 %r_V_6 to i64
+
+ST_3: dmem_i_V_load_1 (91)  [1/2] 2.05ns  loc: Accel.cpp:748
+:4  %dmem_i_V_load_1 = load i64* %dmem_i_V_addr_2, align 8
+
+ST_3: dmem_V_0_0_addr_2 (93)  [1/1] 0.00ns  loc: Accel.cpp:748
+:6  %dmem_V_0_0_addr_2 = getelementptr [1024 x i64]* @dmem_V_0_0, i64 0, i64 %tmp_13
+
+ST_3: dmem_V_0_1_addr_2 (94)  [1/1] 0.00ns  loc: Accel.cpp:748
+:7  %dmem_V_0_1_addr_2 = getelementptr [1024 x i64]* @dmem_V_0_1, i64 0, i64 %tmp_13
+
+ST_3: dmem_V_1_0_addr_2 (95)  [1/1] 0.00ns  loc: Accel.cpp:748
+:8  %dmem_V_1_0_addr_2 = getelementptr [1024 x i64]* @dmem_V_1_0, i64 0, i64 %tmp_13
+
+ST_3: dmem_V_1_1_addr_2 (96)  [1/1] 0.00ns  loc: Accel.cpp:748
+:9  %dmem_V_1_1_addr_2 = getelementptr [1024 x i64]* @dmem_V_1_1, i64 0, i64 %tmp_13
+
+ST_3: StgValue_125 (97)  [1/1] 0.00ns  loc: Accel.cpp:748
+:10  br i1 %dmem_mode_V_read, label %branch5, label %branch4
+
+ST_3: StgValue_126 (101)  [1/1] 2.05ns  loc: Accel.cpp:748
+branch16:0  store i64 %dmem_i_V_load_1, i64* %dmem_V_0_0_addr_2, align 8
+
+ST_3: StgValue_127 (102)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch16:1  br label %branch447
+
+ST_3: StgValue_128 (104)  [1/1] 2.05ns  loc: Accel.cpp:748
+branch17:0  store i64 %dmem_i_V_load_1, i64* %dmem_V_0_1_addr_2, align 8
+
+ST_3: StgValue_129 (105)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch17:1  br label %branch447
+
+ST_3: StgValue_130 (111)  [1/1] 2.05ns  loc: Accel.cpp:748
+branch26:0  store i64 %dmem_i_V_load_1, i64* %dmem_V_1_0_addr_2, align 8
+
+ST_3: StgValue_131 (112)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch26:1  br label %branch572
+
+ST_3: StgValue_132 (114)  [1/1] 2.05ns  loc: Accel.cpp:748
+branch27:0  store i64 %dmem_i_V_load_1, i64* %dmem_V_1_1_addr_2, align 8
+
+ST_3: StgValue_133 (115)  [1/1] 0.00ns  loc: Accel.cpp:748
+branch27:1  br label %branch572
+
+ST_3: tmp_11 (121)  [1/1] 0.00ns  loc: Accel.cpp:746
+:0  %tmp_11 = zext i10 %r_V_10 to i64
+
+ST_3: dmem_i_V_load (124)  [1/2] 2.05ns  loc: Accel.cpp:746
+:3  %dmem_i_V_load = load i64* %dmem_i_V_addr_1, align 8
+
+ST_3: dmem_V_0_0_addr_1 (126)  [1/1] 0.00ns  loc: Accel.cpp:746
+:5  %dmem_V_0_0_addr_1 = getelementptr [1024 x i64]* @dmem_V_0_0, i64 0, i64 %tmp_11
+
+ST_3: dmem_V_0_1_addr_1 (127)  [1/1] 0.00ns  loc: Accel.cpp:746
+:6  %dmem_V_0_1_addr_1 = getelementptr [1024 x i64]* @dmem_V_0_1, i64 0, i64 %tmp_11
+
+ST_3: dmem_V_1_0_addr_1 (128)  [1/1] 0.00ns  loc: Accel.cpp:746
+:7  %dmem_V_1_0_addr_1 = getelementptr [1024 x i64]* @dmem_V_1_0, i64 0, i64 %tmp_11
+
+ST_3: dmem_V_1_1_addr_1 (129)  [1/1] 0.00ns  loc: Accel.cpp:746
+:8  %dmem_V_1_1_addr_1 = getelementptr [1024 x i64]* @dmem_V_1_1, i64 0, i64 %tmp_11
+
+ST_3: StgValue_140 (130)  [1/1] 0.00ns  loc: Accel.cpp:746
+:9  br i1 %dmem_mode_V_read, label %branch7, label %branch6
+
+ST_3: StgValue_141 (134)  [1/1] 2.05ns  loc: Accel.cpp:746
+branch14:0  store i64 %dmem_i_V_load, i64* %dmem_V_0_0_addr_1, align 8
+
+ST_3: StgValue_142 (135)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch14:1  br label %branch644
+
+ST_3: StgValue_143 (137)  [1/1] 2.05ns  loc: Accel.cpp:746
+branch15:0  store i64 %dmem_i_V_load, i64* %dmem_V_0_1_addr_1, align 8
+
+ST_3: StgValue_144 (138)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch15:1  br label %branch644
+
+ST_3: StgValue_145 (144)  [1/1] 2.05ns  loc: Accel.cpp:746
+branch24:0  store i64 %dmem_i_V_load, i64* %dmem_V_1_0_addr_1, align 8
+
+ST_3: StgValue_146 (145)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch24:1  br label %branch768
+
+ST_3: StgValue_147 (147)  [1/1] 2.05ns  loc: Accel.cpp:746
+branch25:0  store i64 %dmem_i_V_load, i64* %dmem_V_1_1_addr_1, align 8
+
+ST_3: StgValue_148 (148)  [1/1] 0.00ns  loc: Accel.cpp:746
+branch25:1  br label %branch768
+
+ST_3: tmp_2 (162)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:6  %tmp_2 = zext i17 %r_V_3 to i64
+
+ST_3: dmem_i_V_load_2 (165)  [1/2] 2.05ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:9  %dmem_i_V_load_2 = load i64* %dmem_i_V_addr, align 8
+
+ST_3: dmem_V_0_0_addr (167)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:11  %dmem_V_0_0_addr = getelementptr [1024 x i64]* @dmem_V_0_0, i64 0, i64 %tmp_2
+
+ST_3: dmem_V_0_1_addr (168)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:12  %dmem_V_0_1_addr = getelementptr [1024 x i64]* @dmem_V_0_1, i64 0, i64 %tmp_2
+
+ST_3: dmem_V_1_0_addr (169)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:13  %dmem_V_1_0_addr = getelementptr [1024 x i64]* @dmem_V_1_0, i64 0, i64 %tmp_2
+
+ST_3: dmem_V_1_1_addr (170)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:14  %dmem_V_1_1_addr = getelementptr [1024 x i64]* @dmem_V_1_1, i64 0, i64 %tmp_2
+
+ST_3: StgValue_155 (171)  [1/1] 0.00ns  loc: Accel.cpp:743
+_ZNK11ap_int_baseILi16ELb0ELb1EElsILi34EEES0_RKS_IXT_ELb1EXleT_Li64EEE.exit:15  br i1 %dmem_mode_V_read, label %branch9, label %branch8
+
+ST_3: StgValue_156 (175)  [1/1] 2.05ns  loc: Accel.cpp:743
+branch12:0  store i64 %dmem_i_V_load_2, i64* %dmem_V_0_0_addr, align 8
+
+ST_3: StgValue_157 (176)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch12:1  br label %branch841
+
+ST_3: StgValue_158 (178)  [1/1] 2.05ns  loc: Accel.cpp:743
+branch13:0  store i64 %dmem_i_V_load_2, i64* %dmem_V_0_1_addr, align 8
+
+ST_3: StgValue_159 (179)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch13:1  br label %branch841
+
+ST_3: StgValue_160 (185)  [1/1] 2.05ns  loc: Accel.cpp:743
+branch22:0  store i64 %dmem_i_V_load_2, i64* %dmem_V_1_0_addr, align 8
+
+ST_3: StgValue_161 (186)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch22:1  br label %branch964
+
+ST_3: StgValue_162 (188)  [1/1] 2.05ns  loc: Accel.cpp:743
+branch23:0  store i64 %dmem_i_V_load_2, i64* %dmem_V_1_1_addr, align 8
+
+ST_3: StgValue_163 (189)  [1/1] 0.00ns  loc: Accel.cpp:743
+branch23:1  br label %branch964
+
+
+ <State 4>: 0.89ns
+ST_4: StgValue_164 (204)  [1/1] 0.89ns  loc: Accel.cpp:758
+.preheader1202.preheader:0  br label %.preheader1202
+
+
+ <State 5>: 2.05ns
+ST_5: p_5 (206)  [1/1] 0.00ns
+.preheader1202:0  %p_5 = phi i13 [ %i_V, %13 ], [ 0, %.preheader1202.preheader ]
+
+ST_5: tmp_6 (207)  [1/1] 1.29ns  loc: Accel.cpp:758
+.preheader1202:1  %tmp_6 = icmp eq i13 %p_5, -3510
+
+ST_5: i_V (208)  [1/1] 1.36ns  loc: Accel.cpp:758
+.preheader1202:2  %i_V = add i13 %p_5, 1
+
+ST_5: StgValue_168 (209)  [1/1] 0.00ns  loc: Accel.cpp:758
+.preheader1202:3  br i1 %tmp_6, label %.preheader1201.preheader, label %12
+
+ST_5: tmp_7 (213)  [1/1] 0.00ns  loc: Accel.cpp:758
+:2  %tmp_7 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str1861)
+
+ST_5: r_V (215)  [1/1] 0.00ns  loc: Accel.cpp:759
+:4  %r_V = call i12 @_ssdm_op_PartSelect.i12.i13.i32.i32(i13 %p_5, i32 1, i32 12)
+
+ST_5: tmp_10 (217)  [1/1] 0.00ns  loc: Accel.cpp:759
+:6  %tmp_10 = zext i13 %p_5 to i64
+
+ST_5: wt_i_V_addr (218)  [1/1] 0.00ns  loc: Accel.cpp:759
+:7  %wt_i_V_addr = getelementptr [4682 x i64]* %wt_i_V, i64 0, i64 %tmp_10
+
+ST_5: wt_i_V_load (219)  [2/2] 2.05ns  loc: Accel.cpp:759
+:8  %wt_i_V_load = load i64* %wt_i_V_addr, align 8
+
+ST_5: tmp_36 (220)  [1/1] 0.00ns  loc: Accel.cpp:758
+:9  %tmp_36 = trunc i13 %p_5 to i1
+
+ST_5: StgValue_175 (223)  [1/1] 0.00ns  loc: Accel.cpp:759
+:12  br i1 %tmp_36, label %branch11, label %branch10
+
+ST_5: empty_43 (231)  [1/1] 0.00ns  loc: Accel.cpp:760
+:0  %empty_43 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str1861, i32 %tmp_7)
+
+ST_5: StgValue_177 (232)  [1/1] 0.00ns  loc: Accel.cpp:758
+:1  br label %.preheader1202
+
+
+ <State 6>: 4.10ns
+ST_6: StgValue_178 (211)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 4682, i64 4682, i64 4682)
+
+ST_6: StgValue_179 (212)  [1/1] 0.00ns  loc: Accel.cpp:758
+:1  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str1861) nounwind
+
+ST_6: StgValue_180 (214)  [1/1] 0.00ns  loc: Accel.cpp:759
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1813) nounwind
+
+ST_6: tmp_1 (216)  [1/1] 0.00ns  loc: Accel.cpp:759
+:5  %tmp_1 = zext i12 %r_V to i64
+
+ST_6: wt_i_V_load (219)  [1/2] 2.05ns  loc: Accel.cpp:759
+:8  %wt_i_V_load = load i64* %wt_i_V_addr, align 8
+
+ST_6: wt_mem_V_0_addr (221)  [1/1] 0.00ns  loc: Accel.cpp:759
+:10  %wt_mem_V_0_addr = getelementptr [2341 x i64]* @wt_mem_V_0, i64 0, i64 %tmp_1
+
+ST_6: wt_mem_V_1_addr (222)  [1/1] 0.00ns  loc: Accel.cpp:759
+:11  %wt_mem_V_1_addr = getelementptr [2341 x i64]* @wt_mem_V_1, i64 0, i64 %tmp_1
+
+ST_6: StgValue_185 (225)  [1/1] 2.05ns  loc: Accel.cpp:759
+branch10:0  store i64 %wt_i_V_load, i64* %wt_mem_V_0_addr, align 8
+
+ST_6: StgValue_186 (226)  [1/1] 0.00ns  loc: Accel.cpp:759
+branch10:1  br label %13
+
+ST_6: StgValue_187 (228)  [1/1] 2.05ns  loc: Accel.cpp:759
+branch11:0  store i64 %wt_i_V_load, i64* %wt_mem_V_1_addr, align 8
+
+ST_6: StgValue_188 (229)  [1/1] 0.00ns  loc: Accel.cpp:759
+branch11:1  br label %13
+
+
+ <State 7>: 0.89ns
+ST_7: StgValue_189 (234)  [1/1] 0.89ns  loc: Accel.cpp:764
+.preheader1201.preheader:0  br label %.preheader1201
+
+
+ <State 8>: 2.05ns
+ST_8: p_6 (236)  [1/1] 0.00ns
+.preheader1201:0  %p_6 = phi i7 [ %i_V_1, %14 ], [ 0, %.preheader1201.preheader ]
+
+ST_8: tmp_9 (237)  [1/1] 1.28ns  loc: Accel.cpp:764
+.preheader1201:1  %tmp_9 = icmp eq i7 %p_6, -64
+
+ST_8: i_V_1 (238)  [1/1] 1.24ns  loc: Accel.cpp:764
+.preheader1201:2  %i_V_1 = add i7 %p_6, 1
+
+ST_8: StgValue_193 (239)  [1/1] 0.00ns  loc: Accel.cpp:764
+.preheader1201:3  br i1 %tmp_9, label %15, label %14
+
+ST_8: tmp_16 (245)  [1/1] 0.00ns  loc: Accel.cpp:765
+:4  %tmp_16 = zext i7 %p_6 to i64
+
+ST_8: kh_i_V_addr (246)  [1/1] 0.00ns  loc: Accel.cpp:765
+:5  %kh_i_V_addr = getelementptr [64 x i64]* %kh_i_V, i64 0, i64 %tmp_16
+
+ST_8: kh_i_V_load (247)  [2/2] 2.05ns  loc: Accel.cpp:765
+:6  %kh_i_V_load = load i64* %kh_i_V_addr, align 8
+
+
+ <State 9>: 4.10ns
+ST_9: StgValue_197 (241)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 64, i64 64, i64 64)
+
+ST_9: StgValue_198 (242)  [1/1] 0.00ns  loc: Accel.cpp:765
+:1  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str1862) nounwind
+
+ST_9: tmp_15 (243)  [1/1] 0.00ns  loc: Accel.cpp:765
+:2  %tmp_15 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str1862)
+
+ST_9: StgValue_200 (244)  [1/1] 0.00ns  loc: Accel.cpp:766
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1813) nounwind
+
+ST_9: kh_i_V_load (247)  [1/2] 2.05ns  loc: Accel.cpp:765
+:6  %kh_i_V_load = load i64* %kh_i_V_addr, align 8
+
+ST_9: kh_mem_V_addr (248)  [1/1] 0.00ns  loc: Accel.cpp:765
+:7  %kh_mem_V_addr = getelementptr [64 x i64]* @kh_mem_V, i64 0, i64 %tmp_16
+
+ST_9: StgValue_203 (249)  [1/1] 2.05ns  loc: Accel.cpp:765
+:8  store i64 %kh_i_V_load, i64* %kh_mem_V_addr, align 8
+
+ST_9: empty_44 (250)  [1/1] 0.00ns  loc: Accel.cpp:765
+:9  %empty_44 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str1862, i32 %tmp_15)
+
+ST_9: StgValue_205 (251)  [1/1] 0.00ns  loc: Accel.cpp:764
+:10  br label %.preheader1201
+
+
+ <State 10>: 0.89ns
+ST_10: StgValue_206 (253)  [1/1] 0.00ns  loc: Accel.cpp:767
+:0  br i1 %tmp_5, label %16, label %17
+
+ST_10: StgValue_207 (255)  [1/1] 0.00ns  loc: Accel.cpp:785
+:0  br i1 %tmp_3, label %.preheader.preheader, label %18
+
+ST_10: o_index_V_load_2 (257)  [1/1] 0.00ns  loc: Accel.cpp:812
+:0  %o_index_V_load_2 = load i16* @o_index_V, align 2
+
+ST_10: StgValue_209 (258)  [2/2] 0.76ns  loc: Accel.cpp:821
+:1  call fastcc void @bin_dense([2341 x i64]* @wt_mem_V_0, [2341 x i64]* @wt_mem_V_1, [64 x i64]* @kh_mem_V, [1024 x i64]* @dmem_V_0_0, [1024 x i64]* @dmem_V_0_1, [1024 x i64]* @dmem_V_1_0, [1024 x i64]* @dmem_V_1_1, i2 %layer_type_V, i1 %dmem_mode_V_read, i1 %d_o_idx_V, i16 %o_index_V_load_2, i16 %n_inputs_V_read, i16 %n_outputs_V_read)
+
+ST_10: StgValue_210 (264)  [1/1] 0.89ns  loc: Accel.cpp:790
+.preheader.preheader:0  br label %.preheader
+
+ST_10: o_index_V_load (313)  [1/1] 0.00ns  loc: Accel.cpp:771
+:0  %o_index_V_load = load i16* @o_index_V, align 2
+
+ST_10: StgValue_212 (314)  [2/2] 0.71ns  loc: Accel.cpp:779
+:1  call fastcc void @fp_conv([2341 x i64]* @wt_mem_V_0, [2341 x i64]* @wt_mem_V_1, [64 x i64]* @kh_mem_V, [1024 x i64]* @dmem_V_0_0, [1024 x i64]* @dmem_V_0_1, [1024 x i64]* @dmem_V_1_0, [1024 x i64]* @dmem_V_1_1, i1 %dmem_mode_V_read, i1 %d_o_idx_V, i1 %p_9, i16 %o_index_V_load, i16 %n_outputs_V_read)
+
+
+ <State 11>: 2.25ns
+ST_11: StgValue_213 (258)  [1/2] 0.00ns  loc: Accel.cpp:821
+:1  call fastcc void @bin_dense([2341 x i64]* @wt_mem_V_0, [2341 x i64]* @wt_mem_V_1, [64 x i64]* @kh_mem_V, [1024 x i64]* @dmem_V_0_0, [1024 x i64]* @dmem_V_0_1, [1024 x i64]* @dmem_V_1_0, [1024 x i64]* @dmem_V_1_1, i2 %layer_type_V, i1 %dmem_mode_V_read, i1 %d_o_idx_V, i16 %o_index_V_load_2, i16 %n_inputs_V_read, i16 %n_outputs_V_read)
+
+ST_11: o_index_V_load_3 (259)  [1/1] 0.00ns  loc: Accel.cpp:824
+:2  %o_index_V_load_3 = load i16* @o_index_V, align 2
+
+ST_11: tmp_19 (260)  [1/1] 1.36ns  loc: Accel.cpp:824
+:3  %tmp_19 = add i16 %o_index_V_load_3, %n_outputs_V_read
+
+ST_11: StgValue_216 (261)  [1/1] 0.89ns  loc: Accel.cpp:824
+:4  store i16 %tmp_19, i16* @o_index_V, align 2
+
+ST_11: StgValue_217 (262)  [1/1] 0.00ns
+:5  br label %.loopexit
+
+ST_11: p_7 (266)  [1/1] 0.00ns
+.preheader:0  %p_7 = phi i10 [ %i_V_3, %_ifconv ], [ 0, %.preheader.preheader ]
+
+ST_11: tmp_25_cast (267)  [1/1] 0.00ns  loc: Accel.cpp:790
+.preheader:1  %tmp_25_cast = zext i10 %p_7 to i16
+
+ST_11: tmp_20 (268)  [1/1] 1.26ns  loc: Accel.cpp:790
+.preheader:2  %tmp_20 = icmp ult i16 %tmp_25_cast, %n_outputs_V_read
+
+ST_11: i_V_3 (269)  [1/1] 1.30ns  loc: Accel.cpp:790
+.preheader:3  %i_V_3 = add i10 %p_7, 1
+
+ST_11: StgValue_222 (270)  [1/1] 0.00ns  loc: Accel.cpp:790
+.preheader:4  br i1 %tmp_20, label %_ifconv, label %.loopexit.loopexit
+
+ST_11: kh_index_V_load_2 (275)  [1/1] 0.00ns  loc: Accel.cpp:793
+_ifconv:3  %kh_index_V_load_2 = load i16* @kh_index_V, align 2
+
+ST_11: r_V_8 (276)  [1/1] 0.00ns  loc: ./Accel.h:79->Accel.cpp:793
+_ifconv:4  %r_V_8 = call i14 @_ssdm_op_PartSelect.i14.i16.i32.i32(i16 %kh_index_V_load_2, i32 2, i32 15)
+
+ST_11: tmp_i (277)  [1/1] 0.00ns  loc: ./Accel.h:79->Accel.cpp:793
+_ifconv:5  %tmp_i = zext i14 %r_V_8 to i64
+
+ST_11: kh_mem_V_addr_1 (278)  [1/1] 0.00ns  loc: ./Accel.h:79->Accel.cpp:793
+_ifconv:6  %kh_mem_V_addr_1 = getelementptr [64 x i64]* @kh_mem_V, i64 0, i64 %tmp_i
+
+ST_11: kh_word_V (279)  [2/2] 2.05ns  loc: ./Accel.h:79->Accel.cpp:793
+_ifconv:7  %kh_word_V = load i64* %kh_mem_V_addr_1, align 8
+
+ST_11: off_V (280)  [1/1] 0.00ns  loc: ./Accel.h:80->Accel.cpp:793
+_ifconv:8  %off_V = trunc i16 %kh_index_V_load_2 to i2
+
+ST_11: this_assign_1 (298)  [1/1] 1.32ns  loc: Accel.cpp:803
+_ifconv:26  %this_assign_1 = icmp eq i10 %p_7, 0
+
+ST_11: StgValue_230 (309)  [1/1] 0.00ns
+.loopexit.loopexit:0  br label %.loopexit
+
+ST_11: StgValue_231 (311)  [1/1] 0.00ns
+.loopexit:0  br label %19
+
+ST_11: StgValue_232 (314)  [1/2] 0.00ns  loc: Accel.cpp:779
+:1  call fastcc void @fp_conv([2341 x i64]* @wt_mem_V_0, [2341 x i64]* @wt_mem_V_1, [64 x i64]* @kh_mem_V, [1024 x i64]* @dmem_V_0_0, [1024 x i64]* @dmem_V_0_1, [1024 x i64]* @dmem_V_1_0, [1024 x i64]* @dmem_V_1_1, i1 %dmem_mode_V_read, i1 %d_o_idx_V, i1 %p_9, i16 %o_index_V_load, i16 %n_outputs_V_read)
+
+ST_11: kh_index_V_load (315)  [1/1] 0.00ns  loc: Accel.cpp:782
+:2  %kh_index_V_load = load i16* @kh_index_V, align 2
+
+ST_11: tmp_17 (316)  [1/1] 1.36ns  loc: Accel.cpp:782
+:3  %tmp_17 = add i16 %kh_index_V_load, %n_outputs_V_read
+
+ST_11: StgValue_235 (317)  [1/1] 0.89ns  loc: Accel.cpp:782
+:4  store i16 %tmp_17, i16* @kh_index_V, align 2
+
+ST_11: o_index_V_load_1 (318)  [1/1] 0.00ns  loc: Accel.cpp:783
+:5  %o_index_V_load_1 = load i16* @o_index_V, align 2
+
+ST_11: tmp_18 (319)  [1/1] 1.36ns  loc: Accel.cpp:783
+:6  %tmp_18 = add i16 %o_index_V_load_1, %n_outputs_V_read
+
+ST_11: StgValue_238 (320)  [1/1] 0.89ns  loc: Accel.cpp:783
+:7  store i16 %tmp_18, i16* @o_index_V, align 2
+
+ST_11: StgValue_239 (321)  [1/1] 0.00ns  loc: Accel.cpp:785
+:8  br label %19
+
+ST_11: tmp_25 (323)  [1/1] 0.76ns  loc: Accel.cpp:828
+:0  %tmp_25 = icmp ne i2 %norm_mode_V_read, -2
+
+ST_11: sf (324)  [1/1] 0.00ns  loc: Accel.cpp:736
+:1  %sf = call i3 @_ssdm_op_PartSelect.i3.i5.i32.i32(i5 %words_per_image_V, i32 2, i32 4)
+
+ST_11: tmp (325)  [1/1] 0.00ns  loc: Accel.cpp:736
+:2  %tmp = zext i3 %sf to i5
+
+ST_11: words_per_out_V (326)  [1/1] 0.71ns  loc: Accel.cpp:828
+:3  %words_per_out_V = select i1 %tmp_25, i5 %words_per_image_V, i5 %tmp
+
+ST_11: rhs_V_1_cast (327)  [1/1] 0.00ns  loc: Accel.cpp:841
+:4  %rhs_V_1_cast = zext i5 %words_per_out_V to i20
+
+ST_11: tmp_32_cast (328)  [1/1] 0.00ns  loc: Accel.cpp:834
+:5  %tmp_32_cast = zext i5 %words_per_out_V to i11
+
+ST_11: tmp_55_not (329)  [1/1] 0.76ns  loc: Accel.cpp:834
+:6  %tmp_55_not = icmp ne i2 %width_mode_V_read, 0
+
+ST_11: brmerge (330)  [1/1] 0.00ns  loc: Accel.cpp:834 (grouped into LUT with out node brmerge1)
+:7  %brmerge = or i1 %tmp_55_not, %tmp_25
+
+ST_11: tmp_41 (331)  [1/1] 0.00ns  loc: Accel.cpp:834 (grouped into LUT with out node brmerge1)
+:8  %tmp_41 = call i1 @_ssdm_op_BitSelect.i1.i3.i32(i3 %layer_mode_V_read, i32 2)
+
+ST_11: brmerge_not (332)  [1/1] 0.00ns  loc: Accel.cpp:834 (grouped into LUT with out node brmerge1)
+:9  %brmerge_not = xor i1 %brmerge, true
+
+ST_11: brmerge1 (333)  [1/1] 0.71ns  loc: Accel.cpp:834 (out node of the LUT)
+:10  %brmerge1 = or i1 %tmp_41, %brmerge_not
+
+ST_11: StgValue_251 (334)  [1/1] 0.89ns  loc: Accel.cpp:831
+:11  br label %20
+
+
+ <State 12>: 3.47ns
+ST_12: kh_word_V (279)  [1/2] 2.05ns  loc: ./Accel.h:79->Accel.cpp:793
+_ifconv:7  %kh_word_V = load i64* %kh_mem_V_addr_1, align 8
+
+ST_12: tmp_42_i (281)  [1/1] 0.76ns  loc: ./Accel.h:81->Accel.cpp:793
+_ifconv:9  %tmp_42_i = icmp eq i2 %off_V, 0
+
+ST_12: loc_V (282)  [1/1] 0.00ns  loc: ./Accel.h:82->Accel.cpp:793 (grouped into LUT with out node newSel1)
+_ifconv:10  %loc_V = trunc i64 %kh_word_V to i16
+
+ST_12: tmp_43_i (283)  [1/1] 0.76ns  loc: ./Accel.h:83->Accel.cpp:793
+_ifconv:11  %tmp_43_i = icmp eq i2 %off_V, 1
+
+ST_12: loc_V_1 (284)  [1/1] 0.00ns  loc: ./Accel.h:84->Accel.cpp:793 (grouped into LUT with out node nc_V)
+_ifconv:12  %loc_V_1 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 16, i32 31)
+
+ST_12: tmp_44_i (285)  [1/1] 0.76ns  loc: ./Accel.h:85->Accel.cpp:793
+_ifconv:13  %tmp_44_i = icmp eq i2 %off_V, -2
+
+ST_12: loc_V_2 (286)  [1/1] 0.00ns  loc: ./Accel.h:86->Accel.cpp:793 (grouped into LUT with out node nc_V)
+_ifconv:14  %loc_V_2 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 32, i32 47)
+
+ST_12: loc_V_3 (287)  [1/1] 0.00ns  loc: ./Accel.h:88->Accel.cpp:793 (grouped into LUT with out node newSel1)
+_ifconv:15  %loc_V_3 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 48, i32 63)
+
+ST_12: sel_tmp1 (288)  [1/1] 0.00ns  loc: ./Accel.h:81->Accel.cpp:793 (grouped into LUT with out node or_cond)
+_ifconv:16  %sel_tmp1 = xor i1 %tmp_42_i, true
+
+ST_12: sel_tmp2 (289)  [1/1] 0.00ns  loc: ./Accel.h:83->Accel.cpp:793 (grouped into LUT with out node or_cond)
+_ifconv:17  %sel_tmp2 = and i1 %tmp_43_i, %sel_tmp1
+
+ST_12: sel_tmp6_demorgan (290)  [1/1] 0.00ns  loc: ./Accel.h:81->Accel.cpp:793 (grouped into LUT with out node sel_tmp7)
+_ifconv:18  %sel_tmp6_demorgan = or i1 %tmp_42_i, %tmp_43_i
+
+ST_12: sel_tmp6 (291)  [1/1] 0.00ns  loc: ./Accel.h:81->Accel.cpp:793 (grouped into LUT with out node sel_tmp7)
+_ifconv:19  %sel_tmp6 = xor i1 %sel_tmp6_demorgan, true
+
+ST_12: sel_tmp7 (292)  [1/1] 0.71ns  loc: ./Accel.h:85->Accel.cpp:793 (out node of the LUT)
+_ifconv:20  %sel_tmp7 = and i1 %tmp_44_i, %sel_tmp6
+
+ST_12: newSel (293)  [1/1] 0.00ns  loc: ./Accel.h:85->Accel.cpp:793 (grouped into LUT with out node nc_V)
+_ifconv:21  %newSel = select i1 %sel_tmp7, i16 %loc_V_2, i16 %loc_V_1
+
+ST_12: or_cond (294)  [1/1] 0.71ns  loc: Accel.cpp:793 (out node of the LUT)
+_ifconv:22  %or_cond = or i1 %sel_tmp7, %sel_tmp2
+
+ST_12: newSel1 (295)  [1/1] 0.71ns  loc: ./Accel.h:81->Accel.cpp:793 (out node of the LUT)
+_ifconv:23  %newSel1 = select i1 %tmp_42_i, i16 %loc_V, i16 %loc_V_3
+
+ST_12: nc_V (296)  [1/1] 0.71ns  loc: Accel.cpp:793 (out node of the LUT)
+_ifconv:24  %nc_V = select i1 %or_cond, i16 %newSel, i16 %newSel1
+
+
+ <State 13>: 2.79ns
+ST_13: o_index_V_load_4 (297)  [1/1] 0.00ns  loc: Accel.cpp:801
+_ifconv:25  %o_index_V_load_4 = load i16* @o_index_V, align 2
+
+ST_13: StgValue_270 (299)  [2/2] 2.79ns  loc: Accel.cpp:803
+_ifconv:27  call fastcc void @bin_conv([2341 x i64]* @wt_mem_V_0, [2341 x i64]* @wt_mem_V_1, i16 %nc_V, [1024 x i64]* @dmem_V_0_0, [1024 x i64]* @dmem_V_0_1, [1024 x i64]* @dmem_V_1_0, [1024 x i64]* @dmem_V_1_1, i1 %dmem_mode_V_read, i1 %d_o_idx_V, i16 %n_inputs_V_read, i16 %o_index_V_load_4, i1 %this_assign_1, i2 %width_mode_V_read, i2 %norm_mode_V_read)
+
+
+ <State 14>: 2.25ns
+ST_14: StgValue_271 (272)  [1/1] 0.00ns  loc: Accel.cpp:790
+_ifconv:0  call void (...)* @_ssdm_op_SpecLoopName([15 x i8]* @p_str1866) nounwind
+
+ST_14: tmp_21 (273)  [1/1] 0.00ns  loc: Accel.cpp:790
+_ifconv:1  %tmp_21 = call i32 (...)* @_ssdm_op_SpecRegionBegin([15 x i8]* @p_str1866)
+
+ST_14: StgValue_273 (274)  [1/1] 0.00ns  loc: Accel.cpp:791
+_ifconv:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 1, i32 1, [1 x i8]* @p_str1813) nounwind
+
+ST_14: StgValue_274 (299)  [1/2] 0.00ns  loc: Accel.cpp:803
+_ifconv:27  call fastcc void @bin_conv([2341 x i64]* @wt_mem_V_0, [2341 x i64]* @wt_mem_V_1, i16 %nc_V, [1024 x i64]* @dmem_V_0_0, [1024 x i64]* @dmem_V_0_1, [1024 x i64]* @dmem_V_1_0, [1024 x i64]* @dmem_V_1_1, i1 %dmem_mode_V_read, i1 %d_o_idx_V, i16 %n_inputs_V_read, i16 %o_index_V_load_4, i1 %this_assign_1, i2 %width_mode_V_read, i2 %norm_mode_V_read)
+
+ST_14: t_V (300)  [1/1] 0.00ns  loc: Accel.cpp:808
+_ifconv:28  %t_V = load i16* @kh_index_V, align 2
+
+ST_14: tmp_22 (301)  [1/1] 1.36ns  loc: Accel.cpp:808
+_ifconv:29  %tmp_22 = add i16 1, %t_V
+
+ST_14: StgValue_277 (302)  [1/1] 0.89ns  loc: Accel.cpp:808
+_ifconv:30  store i16 %tmp_22, i16* @kh_index_V, align 2
+
+ST_14: t_V_1 (303)  [1/1] 0.00ns  loc: Accel.cpp:809
+_ifconv:31  %t_V_1 = load i16* @o_index_V, align 2
+
+ST_14: tmp_23 (304)  [1/1] 1.36ns  loc: Accel.cpp:809
+_ifconv:32  %tmp_23 = add i16 1, %t_V_1
+
+ST_14: StgValue_280 (305)  [1/1] 0.89ns  loc: Accel.cpp:809
+_ifconv:33  store i16 %tmp_23, i16* @o_index_V, align 2
+
+ST_14: empty_45 (306)  [1/1] 0.00ns  loc: Accel.cpp:810
+_ifconv:34  %empty_45 = call i32 (...)* @_ssdm_op_SpecRegionEnd([15 x i8]* @p_str1866, i32 %tmp_21)
+
+ST_14: StgValue_282 (307)  [1/1] 0.00ns  loc: Accel.cpp:790
+_ifconv:35  br label %.preheader
+
+
+ <State 15>: 3.33ns
+ST_15: p_0583_2 (336)  [1/1] 0.00ns  loc: Accel.cpp:841
+:0  %p_0583_2 = phi i16 [ 0, %19 ], [ %p_0583_2_46, %22 ]
+
+ST_15: p_0579_2 (337)  [1/1] 0.00ns  loc: Accel.cpp:841
+:1  %p_0579_2 = phi i10 [ 0, %19 ], [ %p_3, %22 ]
+
+ST_15: p_8 (338)  [1/1] 0.00ns
+:2  %p_8 = phi i16 [ 0, %19 ], [ %i_V_4, %22 ]
+
+ST_15: exitcond (339)  [1/1] 1.26ns  loc: Accel.cpp:831
+:3  %exitcond = icmp eq i16 %p_8, %output_words_V_read
+
+ST_15: i_V_4 (340)  [1/1] 1.36ns  loc: Accel.cpp:831
+:4  %i_V_4 = add i16 %p_8, 1
+
+ST_15: StgValue_288 (341)  [1/1] 0.00ns  loc: Accel.cpp:831
+:5  br i1 %exitcond, label %23, label %21
+
+ST_15: StgValue_289 (343)  [1/1] 0.00ns  loc: Accel.cpp:831
+:0  call void (...)* @_ssdm_op_SpecLoopName([12 x i8]* @p_str1867) nounwind
+
+ST_15: tmp_26 (344)  [1/1] 0.00ns  loc: Accel.cpp:831
+:1  %tmp_26 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str1867)
+
+ST_15: StgValue_291 (345)  [1/1] 0.00ns  loc: Accel.cpp:832
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 1, i32 1, [1 x i8]* @p_str1813) nounwind
+
+ST_15: StgValue_292 (346)  [1/1] 0.00ns  loc: Accel.cpp:832
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1813) nounwind
+
+ST_15: StgValue_293 (347)  [1/1] 0.00ns  loc: Accel.cpp:834
+:4  br i1 %brmerge1, label %._crit_edge1220_ifconv, label %._crit_edge1221_ifconv
+
+ST_15: r_V_1 (349)  [1/1] 0.00ns  loc: Accel.cpp:836
+._crit_edge1221_ifconv:0  %r_V_1 = call i15 @_ssdm_op_PartSelect.i15.i16.i32.i32(i16 %p_0583_2, i32 1, i32 15)
+
+ST_15: lhs_V_1_cast (351)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:2  %lhs_V_1_cast = zext i15 %r_V_1 to i20
+
+ST_15: r_V_5 (352)  [2/2] 3.04ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:3  %r_V_5 = mul i20 %lhs_V_1_cast, %rhs_V_1_cast
+
+ST_15: tmp_43 (356)  [1/1] 0.00ns  loc: Accel.cpp:841
+._crit_edge1221_ifconv:7  %tmp_43 = trunc i16 %p_0583_2 to i1
+
+ST_15: img_off_V_1 (397)  [1/1] 1.30ns  loc: Accel.cpp:841
+:0  %img_off_V_1 = add i10 %p_0579_2, 1
+
+ST_15: tmp_40_cast (398)  [1/1] 0.00ns  loc: Accel.cpp:841
+:1  %tmp_40_cast = zext i10 %img_off_V_1 to i11
+
+ST_15: tmp_31 (399)  [1/1] 1.32ns  loc: Accel.cpp:841
+:2  %tmp_31 = icmp eq i11 %tmp_40_cast, %tmp_32_cast
+
+ST_15: img_idx_V_1 (400)  [1/1] 1.36ns  loc: Accel.cpp:843
+:3  %img_idx_V_1 = add i16 %p_0583_2, 1
+
+ST_15: p_0583_2_46 (401)  [1/1] 0.71ns  loc: Accel.cpp:841
+:4  %p_0583_2_46 = select i1 %tmp_31, i16 %img_idx_V_1, i16 %p_0583_2
+
+ST_15: p_3 (402)  [1/1] 0.71ns  loc: Accel.cpp:841
+:5  %p_3 = select i1 %tmp_31, i10 0, i10 %img_off_V_1
+
+ST_15: empty_47 (403)  [1/1] 0.00ns  loc: Accel.cpp:845
+:6  %empty_47 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str1867, i32 %tmp_26)
+
+ST_15: StgValue_305 (404)  [1/1] 0.00ns  loc: Accel.cpp:831
+:7  br label %20
+
+
+ <State 16>: 2.70ns
+ST_16: r_V_5 (352)  [1/2] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:3  %r_V_5 = mul i20 %lhs_V_1_cast, %rhs_V_1_cast
+
+ST_16: rhs_V_2_cast (353)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:4  %rhs_V_2_cast = zext i10 %p_0579_2 to i20
+
+ST_16: r_V_9 (354)  [1/1] 2.70ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:5  %r_V_9 = add i20 %r_V_5, %rhs_V_2_cast
+
+
+ <State 17>: 2.05ns
+ST_17: tmp_30 (355)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:6  %tmp_30 = zext i20 %r_V_9 to i64
+
+ST_17: dmem_V_0_0_addr_4 (357)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:8  %dmem_V_0_0_addr_4 = getelementptr [1024 x i64]* @dmem_V_0_0, i64 0, i64 %tmp_30
+
+ST_17: dmem_V_0_1_addr_4 (358)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:9  %dmem_V_0_1_addr_4 = getelementptr [1024 x i64]* @dmem_V_0_1, i64 0, i64 %tmp_30
+
+ST_17: dmem_V_1_0_addr_4 (359)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:10  %dmem_V_1_0_addr_4 = getelementptr [1024 x i64]* @dmem_V_1_0, i64 0, i64 %tmp_30
+
+ST_17: dmem_V_1_1_addr_4 (360)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:11  %dmem_V_1_1_addr_4 = getelementptr [1024 x i64]* @dmem_V_1_1, i64 0, i64 %tmp_30
+
+ST_17: dmem_V_0_1_load_1 (361)  [2/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:12  %dmem_V_0_1_load_1 = load i64* %dmem_V_0_1_addr_4, align 8
+
+ST_17: dmem_V_0_0_load_1 (362)  [2/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:13  %dmem_V_0_0_load_1 = load i64* %dmem_V_0_0_addr_4, align 8
+
+ST_17: dmem_V_1_1_load_1 (363)  [2/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:14  %dmem_V_1_1_load_1 = load i64* %dmem_V_1_1_addr_4, align 8
+
+ST_17: dmem_V_1_0_load_1 (364)  [2/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:15  %dmem_V_1_0_load_1 = load i64* %dmem_V_1_0_addr_4, align 8
+
+ST_17: r_V_7 (376)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:1  %r_V_7 = call i15 @_ssdm_op_PartSelect.i15.i16.i32.i32(i16 %p_8, i32 1, i32 15)
+
+ST_17: tmp_28 (377)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:2  %tmp_28 = zext i15 %r_V_7 to i64
+
+ST_17: dmem_V_0_0_addr_3 (379)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:4  %dmem_V_0_0_addr_3 = getelementptr [1024 x i64]* @dmem_V_0_0, i64 0, i64 %tmp_28
+
+ST_17: dmem_V_0_1_addr_3 (380)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:5  %dmem_V_0_1_addr_3 = getelementptr [1024 x i64]* @dmem_V_0_1, i64 0, i64 %tmp_28
+
+ST_17: dmem_V_1_0_addr_3 (381)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:6  %dmem_V_1_0_addr_3 = getelementptr [1024 x i64]* @dmem_V_1_0, i64 0, i64 %tmp_28
+
+ST_17: dmem_V_1_1_addr_3 (382)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:7  %dmem_V_1_1_addr_3 = getelementptr [1024 x i64]* @dmem_V_1_1, i64 0, i64 %tmp_28
+
+ST_17: dmem_V_0_1_load (383)  [2/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:8  %dmem_V_0_1_load = load i64* %dmem_V_0_1_addr_3, align 8
+
+ST_17: dmem_V_0_0_load (384)  [2/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:9  %dmem_V_0_0_load = load i64* %dmem_V_0_0_addr_3, align 8
+
+ST_17: dmem_V_1_1_load (385)  [2/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:10  %dmem_V_1_1_load = load i64* %dmem_V_1_1_addr_3, align 8
+
+ST_17: dmem_V_1_0_load (386)  [2/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:11  %dmem_V_1_0_load = load i64* %dmem_V_1_0_addr_3, align 8
+
+
+ <State 18>: 3.47ns
+ST_18: dmem_V_0_1_load_1 (361)  [1/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:12  %dmem_V_0_1_load_1 = load i64* %dmem_V_0_1_addr_4, align 8
+
+ST_18: dmem_V_0_0_load_1 (362)  [1/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:13  %dmem_V_0_0_load_1 = load i64* %dmem_V_0_0_addr_4, align 8
+
+ST_18: dmem_V_1_1_load_1 (363)  [1/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:14  %dmem_V_1_1_load_1 = load i64* %dmem_V_1_1_addr_4, align 8
+
+ST_18: dmem_V_1_0_load_1 (364)  [1/2] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:15  %dmem_V_1_0_load_1 = load i64* %dmem_V_1_0_addr_4, align 8
+
+ST_18: sel_tmp4 (365)  [1/1] 0.00ns  loc: Accel.cpp:841 (grouped into LUT with out node newSel7)
+._crit_edge1221_ifconv:16  %sel_tmp4 = xor i1 %tmp_43, true
+
+ST_18: sel_tmp5 (366)  [1/1] 0.00ns  loc: Accel.cpp:841 (grouped into LUT with out node newSel7)
+._crit_edge1221_ifconv:17  %sel_tmp5 = and i1 %dmem_mode_V_read, %sel_tmp4
+
+ST_18: sel_tmp8 (367)  [1/1] 0.00ns  loc: Accel.cpp:841 (grouped into LUT with out node newSel8)
+._crit_edge1221_ifconv:18  %sel_tmp8 = and i1 %tmp_43, %d_o_idx_V
+
+ST_18: newSel6 (368)  [1/1] 0.00ns  loc: Accel.cpp:841 (grouped into LUT with out node newSel8)
+._crit_edge1221_ifconv:19  %newSel6 = select i1 %sel_tmp8, i64 %dmem_V_1_1_load_1, i64 %dmem_V_0_1_load_1
+
+ST_18: newSel7 (369)  [1/1] 0.71ns  loc: Accel.cpp:841 (out node of the LUT)
+._crit_edge1221_ifconv:20  %newSel7 = select i1 %sel_tmp5, i64 %dmem_V_0_0_load_1, i64 %dmem_V_1_0_load_1
+
+ST_18: newSel8 (370)  [1/1] 0.71ns  loc: Accel.cpp:841 (out node of the LUT)
+._crit_edge1221_ifconv:21  %newSel8 = select i1 %tmp_43, i64 %newSel6, i64 %newSel7
+
+ST_18: tmp_42 (378)  [1/1] 0.00ns  loc: Accel.cpp:831
+._crit_edge1220_ifconv:3  %tmp_42 = trunc i16 %p_8 to i1
+
+ST_18: dmem_V_0_1_load (383)  [1/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:8  %dmem_V_0_1_load = load i64* %dmem_V_0_1_addr_3, align 8
+
+ST_18: dmem_V_0_0_load (384)  [1/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:9  %dmem_V_0_0_load = load i64* %dmem_V_0_0_addr_3, align 8
+
+ST_18: dmem_V_1_1_load (385)  [1/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:10  %dmem_V_1_1_load = load i64* %dmem_V_1_1_addr_3, align 8
+
+ST_18: dmem_V_1_0_load (386)  [1/2] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:11  %dmem_V_1_0_load = load i64* %dmem_V_1_0_addr_3, align 8
+
+ST_18: sel_tmp9 (387)  [1/1] 0.00ns  loc: Accel.cpp:831 (grouped into LUT with out node newSel4)
+._crit_edge1220_ifconv:12  %sel_tmp9 = xor i1 %tmp_42, true
+
+ST_18: sel_tmp (388)  [1/1] 0.00ns  loc: Accel.cpp:831 (grouped into LUT with out node newSel4)
+._crit_edge1220_ifconv:13  %sel_tmp = and i1 %dmem_mode_V_read, %sel_tmp9
+
+ST_18: sel_tmp3 (389)  [1/1] 0.00ns  loc: Accel.cpp:831 (grouped into LUT with out node newSel5)
+._crit_edge1220_ifconv:14  %sel_tmp3 = and i1 %tmp_42, %d_o_idx_V
+
+ST_18: newSel3 (390)  [1/1] 0.00ns  loc: Accel.cpp:831 (grouped into LUT with out node newSel5)
+._crit_edge1220_ifconv:15  %newSel3 = select i1 %sel_tmp3, i64 %dmem_V_1_1_load, i64 %dmem_V_0_1_load
+
+ST_18: newSel4 (391)  [1/1] 0.71ns  loc: Accel.cpp:831 (out node of the LUT)
+._crit_edge1220_ifconv:16  %newSel4 = select i1 %sel_tmp, i64 %dmem_V_0_0_load, i64 %dmem_V_1_0_load
+
+ST_18: newSel5 (392)  [1/1] 0.71ns  loc: Accel.cpp:831 (out node of the LUT)
+._crit_edge1220_ifconv:17  %newSel5 = select i1 %tmp_42, i64 %newSel3, i64 %newSel4
+
+
+ <State 19>: 2.05ns
+ST_19: tmp_29 (350)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:1  %tmp_29 = zext i16 %p_8 to i64
+
+ST_19: dmem_o_V_addr_1 (371)  [1/1] 0.00ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:22  %dmem_o_V_addr_1 = getelementptr [128 x i64]* %dmem_o_V, i64 0, i64 %tmp_29
+
+ST_19: StgValue_351 (372)  [1/1] 2.05ns  loc: Accel.cpp:837
+._crit_edge1221_ifconv:23  store i64 %newSel8, i64* %dmem_o_V_addr_1, align 8
+
+ST_19: StgValue_352 (373)  [1/1] 0.00ns  loc: Accel.cpp:838
+._crit_edge1221_ifconv:24  br label %22
+
+ST_19: tmp_27 (375)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:0  %tmp_27 = zext i16 %p_8 to i64
+
+ST_19: dmem_o_V_addr (393)  [1/1] 0.00ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:18  %dmem_o_V_addr = getelementptr [128 x i64]* %dmem_o_V, i64 0, i64 %tmp_27
+
+ST_19: StgValue_355 (394)  [1/1] 2.05ns  loc: Accel.cpp:839
+._crit_edge1220_ifconv:19  store i64 %newSel5, i64* %dmem_o_V_addr, align 8
+
+ST_19: StgValue_356 (395)  [1/1] 0.00ns
+._crit_edge1220_ifconv:20  br label %22
+
+
+ <State 20>: 0.00ns
+ST_20: StgValue_357 (406)  [1/1] 0.00ns  loc: Accel.cpp:846
+:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 0.625ns.
+
+ <State 1>: 0.892ns
+The critical path consists of the following:
+	'load' operation ('__Val2__', Accel.cpp:729) on static variable 'kh_index_V' [50]  (0 ns)
+	multiplexor before 'phi' operation ('p_9', Accel.cpp:729) with incoming values : ('tmp_33', Accel.cpp:729) [60]  (0.892 ns)
+	'phi' operation ('p_9', Accel.cpp:729) with incoming values : ('tmp_33', Accel.cpp:729) [60]  (0 ns)
+
+ <State 2>: 3.33ns
+The critical path consists of the following:
+	'phi' operation ('p_2', Accel.cpp:750) with incoming values : ('p_s_42', Accel.cpp:750) [72]  (0 ns)
+	'add' operation ('img_off.V', Accel.cpp:750) [195]  (1.3 ns)
+	'icmp' operation ('tmp_24', Accel.cpp:750) [197]  (1.32 ns)
+	'select' operation ('p_s', Accel.cpp:750) [199]  (0.71 ns)
+
+ <State 3>: 4.1ns
+The critical path consists of the following:
+	'load' operation ('dmem_i_V_load_1', Accel.cpp:748) on array 'dmem_i_V' [91]  (2.05 ns)
+	'store' operation (Accel.cpp:748) of variable 'dmem_i_V_load_1', Accel.cpp:748 on array 'dmem_V_1_1' [114]  (2.05 ns)
+
+ <State 4>: 0.892ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i.V') with incoming values : ('i.V', Accel.cpp:758) [206]  (0.892 ns)
+
+ <State 5>: 2.05ns
+The critical path consists of the following:
+	'phi' operation ('i.V') with incoming values : ('i.V', Accel.cpp:758) [206]  (0 ns)
+	'getelementptr' operation ('wt_i_V_addr', Accel.cpp:759) [218]  (0 ns)
+	'load' operation ('wt_i_V_load', Accel.cpp:759) on array 'wt_i_V' [219]  (2.05 ns)
+
+ <State 6>: 4.1ns
+The critical path consists of the following:
+	'load' operation ('wt_i_V_load', Accel.cpp:759) on array 'wt_i_V' [219]  (2.05 ns)
+	'store' operation (Accel.cpp:759) of variable 'wt_i_V_load', Accel.cpp:759 on array 'wt_mem_V_0' [225]  (2.05 ns)
+
+ <State 7>: 0.892ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i.V') with incoming values : ('i.V', Accel.cpp:764) [236]  (0.892 ns)
+
+ <State 8>: 2.05ns
+The critical path consists of the following:
+	'phi' operation ('i.V') with incoming values : ('i.V', Accel.cpp:764) [236]  (0 ns)
+	'getelementptr' operation ('kh_i_V_addr', Accel.cpp:765) [246]  (0 ns)
+	'load' operation ('kh_i_V_load', Accel.cpp:765) on array 'kh_i_V' [247]  (2.05 ns)
+
+ <State 9>: 4.1ns
+The critical path consists of the following:
+	'load' operation ('kh_i_V_load', Accel.cpp:765) on array 'kh_i_V' [247]  (2.05 ns)
+	'store' operation (Accel.cpp:765) of variable 'kh_i_V_load', Accel.cpp:765 on array 'kh_mem_V' [249]  (2.05 ns)
+
+ <State 10>: 0.892ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i.V') with incoming values : ('i.V', Accel.cpp:790) [266]  (0.892 ns)
+
+ <State 11>: 2.25ns
+The critical path consists of the following:
+	'load' operation ('o_index_V_load_3', Accel.cpp:824) on static variable 'o_index_V' [259]  (0 ns)
+	'add' operation ('tmp_19', Accel.cpp:824) [260]  (1.36 ns)
+	'store' operation (Accel.cpp:824) of variable 'tmp_19', Accel.cpp:824 on static variable 'o_index_V' [261]  (0.892 ns)
+
+ <State 12>: 3.47ns
+The critical path consists of the following:
+	'load' operation ('kh_word.V', ./Accel.h:79->Accel.cpp:793) on array 'kh_mem_V' [279]  (2.05 ns)
+	'select' operation ('newSel1', ./Accel.h:81->Accel.cpp:793) [295]  (0.71 ns)
+	'select' operation ('comp.V', Accel.cpp:793) [296]  (0.71 ns)
+
+ <State 13>: 2.79ns
+The critical path consists of the following:
+	'load' operation ('o_index_V_load_4', Accel.cpp:801) on static variable 'o_index_V' [297]  (0 ns)
+	'call' operation (Accel.cpp:803) to 'bin_conv' [299]  (2.79 ns)
+
+ <State 14>: 2.25ns
+The critical path consists of the following:
+	'load' operation ('t.V', Accel.cpp:808) on static variable 'kh_index_V' [300]  (0 ns)
+	'add' operation ('tmp_22', Accel.cpp:808) [301]  (1.36 ns)
+	'store' operation (Accel.cpp:808) of variable 'tmp_22', Accel.cpp:808 on static variable 'kh_index_V' [302]  (0.892 ns)
+
+ <State 15>: 3.33ns
+The critical path consists of the following:
+	'phi' operation ('p_0579_2', Accel.cpp:841) with incoming values : ('p_3', Accel.cpp:841) [337]  (0 ns)
+	'add' operation ('img_off.V', Accel.cpp:841) [397]  (1.3 ns)
+	'icmp' operation ('tmp_31', Accel.cpp:841) [399]  (1.32 ns)
+	'select' operation ('p_0583_2_46', Accel.cpp:841) [401]  (0.71 ns)
+
+ <State 16>: 2.7ns
+The critical path consists of the following:
+	'mul' operation ('r.V', Accel.cpp:837) [352]  (0 ns)
+	'add' operation ('r.V', Accel.cpp:837) [354]  (2.7 ns)
+
+ <State 17>: 2.05ns
+The critical path consists of the following:
+	'getelementptr' operation ('dmem_V_0_1_addr_4', Accel.cpp:837) [358]  (0 ns)
+	'load' operation ('dmem_V_0_1_load_1', Accel.cpp:837) on array 'dmem_V_0_1' [361]  (2.05 ns)
+
+ <State 18>: 3.47ns
+The critical path consists of the following:
+	'load' operation ('dmem_V_0_0_load_1', Accel.cpp:837) on array 'dmem_V_0_0' [362]  (2.05 ns)
+	'select' operation ('newSel7', Accel.cpp:841) [369]  (0.71 ns)
+	'select' operation ('newSel8', Accel.cpp:841) [370]  (0.71 ns)
+
+ <State 19>: 2.05ns
+The critical path consists of the following:
+	'getelementptr' operation ('dmem_o_V_addr_1', Accel.cpp:837) [371]  (0 ns)
+	'store' operation (Accel.cpp:837) of variable 'newSel8', Accel.cpp:841 on array 'dmem_o_V' [372]  (2.05 ns)
+
+ <State 20>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

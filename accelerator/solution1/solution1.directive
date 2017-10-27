@@ -1,0 +1,250 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="conv3x3b" label="" functionLabel="">
+            <pragma name="INLINE"/>
+        </directive>
+        <directive functionName="encode_bit" label="" functionLabel="">
+            <pragma name="INLINE"/>
+        </directive>
+        <directive functionName="process_word" label="" functionLabel="">
+            <pragma name="INLINE"/>
+        </directive>
+        <directive functionName="conv_word" label="" functionLabel="">
+            <pragma name="INLINE"/>
+        </directive>
+        <directive functionName="top" label="LOOP_DMEM_I" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="top" label="LOOP_DMEM_I" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="512"/>
+            </pragma>
+        </directive>
+        <directive functionName="top" label="LOOP_DMEM_O" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="top" label="LOOP_DMEM_O" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="top" label="LOOP_WT_I" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="top" label="LOOP_KH_I" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="top" label="LOOP_IMG_BATCH" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_PHASES" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="512"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_WORDS_IN_PHASE" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_WORDS_IN_PHASE" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="17"/>
+                <option name="max" value="32"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_WORDS_IN_PHASE" functionLabel="">
+            <pragma name="DEPENDENCE">
+                <option name="variable" value="fixed_buffer"/>
+                <option name="inter" value="" positionalBoolean="type"/>
+                <option name="false" value="" positionalBoolean="dependent"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_WORDS_IN_PHASE" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="wt_word_buffer" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_ACC_PHASES" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_ACC_PHASES_I" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_ACC_PHASES_I" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="16"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_BATCH_NORM" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="bin_conv" label="LOOP_BATCH_NORM" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="16"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="LOOP_FP_CONV_O" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="32"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="LOOP_RESET_LINEBUFFERS" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+        <directive functionName="fp_conv" label="LOOP_RESET_LINEBUFFERS" functionLabel="">
+            <pragma name="UNROLL">
+                <option name="region" value="" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="LOOP_LOAD_WTS" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+        <directive functionName="fp_conv" label="LOOP_CONV_COLS" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="fp_conv" label="LOOP_OUTPUT" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="bin_dense" label="LOOP_DENSE_I" functionLabel="">
+            <pragma name="PIPELINE"/>
+        </directive>
+        <directive functionName="bin_dense" label="LOOP_DENSE_I" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="64"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_dense" label="LOOP_DENSE_O" functionLabel="">
+            <pragma name="LOOP_TRIPCOUNT">
+                <option name="min" value="1"/>
+                <option name="max" value="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="top" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="dmem" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="top" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="dmem" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="2"/>
+            </pragma>
+        </directive>
+        <directive functionName="top" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="wt_mem" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="line_buffer" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="conv_params" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="fixed_buffer" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="2"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="fixed_temp" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="word_buffer" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="old_word_buffer" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="lb" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="rb" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="bin_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="conv_out_buffer" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="win" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="lbuf" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="outwords" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+        <directive functionName="fp_conv" label="" functionLabel="">
+            <pragma name="ARRAY_PARTITION">
+                <option name="variable" value="wtbuf" positionalBoolean="4"/>
+                <option name="complete" value="" positionalBoolean="type"/>
+                <option name="dim" value="0"/>
+            </pragma>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
+

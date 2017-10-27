@@ -1,0 +1,15 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'yuzou' on host 'localhost' (Linux_x86_64 version 4.4.0-96-generic) on Tue Oct 24 15:37:32 EDT 2017
+INFO: [HLS 200-10] On os Ubuntu 14.04.5 LTS
+INFO: [HLS 200-10] In directory '/home/yuzou/bnn-fpga-k7'
+INFO: [HLS 200-10] Opening project '/home/yuzou/bnn-fpga-k7/accelerator'.
+INFO: [HLS 200-10] Opening solution '/home/yuzou/bnn-fpga-k7/accelerator/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-10] Setting target device to 'xc7k325tffg900-2'
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../AccelSchedule.cpp in debug mode
+   Compiling ../../../../accel_test_random.cpp in debug mode
+   Generating csim.exe
+INFO: [SIM 211-1] CSim file generation done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************

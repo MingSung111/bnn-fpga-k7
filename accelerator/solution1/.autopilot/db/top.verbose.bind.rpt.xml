@@ -1,0 +1,53 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'top'" level="0">
+<item name = "Date">Mon Oct 23 16:49:21 2017
+</item>
+<item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
+<item name = "Project">accelerator</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintex7</item>
+<item name = "Target device">xc7k325tffg900-2</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00, 4.95, 0.62</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">4776, 42728, 4777, 42729, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_bin_conv_fu_637">bin_conv, 88, 37453, 88, 37453, none</column>
+<column name="grp_fp_conv_fu_667">fp_conv, 1117, 35713, 1117, 35713, none</column>
+<column name="grp_bin_dense_fu_691">bin_dense, 16, 79, 16, 79, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- LOOP_DMEM_I">1, 512, 2, 1, 1, 1 ~ 512, yes</column>
+<column name="- LOOP_WT_I">4682, 4682, 2, 1, 1, 4682, yes</column>
+<column name="- LOOP_KH_I">64, 64, 2, 1, 1, 64, yes</column>
+<column name="- LOOP_IMG_BATCH">92, 37457, 92 ~ 37457, -, -, 1, no</column>
+<column name="- LOOP_DMEM_O">4, 4, 5, 1, 1, 1, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

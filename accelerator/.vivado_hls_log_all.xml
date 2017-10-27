@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog>
+        <logs message="ERROR: [COSIM 212-4] *** C/RTL co-simulation finished: FAIL ***&#xA;command 'ap_source' returned error code&#xA;    while executing&#xA;&quot;source /home/yuzou/bnn-fpga-k7/accelerator/solution1/cosim.tcl&quot;&#xA;    invoked from within&#xA;&quot;hls::main /home/yuzou/bnn-fpga-k7/accelerator/solution1/cosim.tcl&quot;&#xA;    (&quot;uplevel&quot; body line 1)&#xA;    invoked from within&#xA;&quot;uplevel 1 hls::main {*}$args&quot;&#xA;    (procedure &quot;hls_proc&quot; line 5)&#xA;    invoked from within&#xA;&quot;hls_proc $argv&quot;&#xA;" projectName="accelerator" solutionName="solution1" date="2017-10-23T17:13:53.581-0400"/>
+        <logs message="ERROR: [COSIM 212-331] Aborting co-simulation: C simulation failed, compilation errors." projectName="accelerator" solutionName="solution1" date="2017-10-23T17:13:52.469-0400"/>
+        <logs message="ERROR: [COSIM 212-321] EXE file generate failed." projectName="accelerator" solutionName="solution1" date="2017-10-23T17:13:52.450-0400"/>
+        <logs message="ERROR: [COSIM 212-321] EXE file generate failed." projectName="accelerator" solutionName="solution1" date="2017-10-23T17:13:52.424-0400"/>
+        <logs message="ERROR: [COSIM 212-317] C++ compile error." projectName="accelerator" solutionName="solution1" date="2017-10-23T17:13:52.386-0400"/>
+      </simLog>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Register 'o_index_V' is power-on initialization." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:51:57.454-0400" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'kh_index_V' is power-on initialization." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:51:57.307-0400" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'outword_V' is power-on initialization." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:49:40.907-0400" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'wt_offset_V' is power-on initialization." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:49:40.332-0400" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'wt_addr_V' is power-on initialization." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:49:40.307-0400" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-21] The critical path consists of the following:&#xA;&#x9;'mul' operation ('__Val2__', Accel.cpp:662) (4.95 ns)" projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:19.100-0400" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-21] Estimated clock period (4.95ns) exceeds the target (target clock period: 5ns, clock uncertainty: 0.625ns, effective delay budget: 4.38ns)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:19.081-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[0].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:17.377-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[63].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.774-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[62].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.764-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[61].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.752-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[60].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.743-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[59].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.732-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[58].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.633-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[57].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.623-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[56].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.614-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[55].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.604-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[54].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.592-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[53].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.583-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[52].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.574-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[51].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.565-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[50].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.554-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[49].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.543-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[48].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.534-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[47].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.516-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[46].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.490-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[45].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.477-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[44].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.468-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[43].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.448-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[42].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.421-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[41].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.410-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[40].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.398-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[39].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.377-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[38].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.365-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[37].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.357-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[36].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.349-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[35].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.341-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[34].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.334-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[33].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.317-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[32].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.292-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[31].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.285-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[30].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.236-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[29].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.216-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[28].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.200-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[27].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.179-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[26].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.157-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[25].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.145-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[24].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.117-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[23].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.110-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[22].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.096-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[21].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.080-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[20].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.067-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[19].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.052-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[18].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.036-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[17].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.024-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[16].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:08.015-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[15].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.995-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[14].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.977-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[13].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.916-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[12].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.905-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[11].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.880-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[10].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.863-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[9].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.846-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[8].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.829-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[7].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.813-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[6].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.794-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[5].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.776-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[4].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.761-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[3].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.723-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[2].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.704-0400" type="Warning"/>
+        <logs message="WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[1].V' (Accel.cpp:210)." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.683-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop because there is nontrivial logic in the loop latch." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:44:07.658-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_ACC_PHASES' (Accel.cpp:364:69) in function 'bin_conv' : " projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:36.145-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:36.139-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_PHASES' (Accel.cpp:251:77) in function 'bin_conv' : " projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:36.132-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:36.124-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_DENSE_O' (Accel.cpp:592:57) in function 'bin_dense' : " projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:35.972-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] more than one sub loop." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:35.965-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_FP_CONV_O' (Accel.cpp:467:51) in function 'fp_conv' : " projectName="accelerator" solutionName="solution1" date="2017-10-23T16:37:35.954-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-561] Ignored invalid trip count directive (MIN (= 32) > AVE (= 24)) for loop 'LOOP_WORDS_IN_PHASE' (Accel.cpp:264:1) in function 'bin_conv'." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:33:51.757-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-561] Updating loop lower bound from 17 to 32 for loop 'LOOP_WORDS_IN_PHASE' (Accel.cpp:264:1) in function 'bin_conv'." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:33:51.676-0400" type="Warning"/>
+        <logs message="WARNING: [SYNCHK 200-23] Accel.cpp:486: variable-indexed range selection may cause suboptimal QoR." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:33:49.792-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-503] Ignored unroll directive 'LOOP_LOAD_WTS' (Accel.cpp:485) in function 'fp_conv(ap_int&lt;64> (*) [2341], ap_int&lt;64>*, ap_int&lt;64> (*) [2][1024], ap_uint&lt;1>, ap_uint&lt;1>, ap_uint&lt;16>, ap_uint&lt;16>, unsigned int)': multiple loop unroll directives in one loop, use the first one and ignore the rest." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:33:44.690-0400" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-503] Ignored unroll directive 'LOOP_RESET_LINEBUFFERS' (Accel.cpp:470) in function 'fp_conv(ap_int&lt;64> (*) [2341], ap_int&lt;64>*, ap_int&lt;64> (*) [2][1024], ap_uint&lt;1>, ap_uint&lt;1>, ap_uint&lt;16>, ap_uint&lt;16>, unsigned int)': multiple loop unroll directives in one loop, use the first one and ignore the rest." projectName="accelerator" solutionName="solution1" date="2017-10-23T16:33:44.682-0400" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

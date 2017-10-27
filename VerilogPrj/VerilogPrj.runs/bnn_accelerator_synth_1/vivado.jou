@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Mon Oct 23 20:31:27 2017
+# Process ID: 9526
+# Current directory: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/bnn_accelerator_synth_1
+# Command line: vivado -log bnn_accelerator.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bnn_accelerator.tcl
+# Log file: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/bnn_accelerator_synth_1/bnn_accelerator.vds
+# Journal file: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/bnn_accelerator_synth_1/vivado.jou
+#-----------------------------------------------------------
+source bnn_accelerator.tcl -notrace

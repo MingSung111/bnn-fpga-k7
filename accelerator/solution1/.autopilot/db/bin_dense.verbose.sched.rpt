@@ -1,0 +1,1522 @@
+
+
+================================================================
+== Vivado HLS Report for 'bin_dense'
+================================================================
+* Date:           Mon Oct 23 16:44:19 2017
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        accelerator
+* Solution:       solution1
+* Product family: kintex7
+* Target device:  xc7k325tffg900-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   5.00|      4.95|        0.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |   16|   79|   16|   79|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+-----+-----+----------+-----------+-----------+--------+----------+
+        |                 |  Latency  | Iteration|  Initiation Interval  |  Trip  |          |
+        |    Loop Name    | min | max |  Latency |  achieved |   target  |  Count | Pipelined|
+        +-----------------+-----+-----+----------+-----------+-----------+--------+----------+
+        |- LOOP_DENSE_O   |   15|   78|  15 ~ 78 |          -|          -|       1|    no    |
+        | + LOOP_DENSE_I  |    6|   69|         7|          1|          1| 1 ~ 64 |    yes   |
+        +-----------------+-----+-----+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 7
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 16
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 7, States = { 4 5 6 7 8 9 10 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond)
+3 --> 
+	4  / true
+4 --> 
+	11  / (!tmp_52)
+	5  / (tmp_52)
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	4  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	2  / true
+* FSM state operations: 
+
+ <State 1>: 0.89ns
+ST_1: n_outputs_read (14)  [1/1] 0.00ns
+arrayctor.loop.preheader:0  %n_outputs_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %n_outputs)
+
+ST_1: n_inputs_read (15)  [1/1] 0.00ns
+arrayctor.loop.preheader:1  %n_inputs_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %n_inputs)
+
+ST_1: o_index_V_read (16)  [1/1] 0.00ns
+arrayctor.loop.preheader:2  %o_index_V_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %o_index_V)
+
+ST_1: d_o_idx_V_read (17)  [1/1] 0.00ns
+arrayctor.loop.preheader:3  %d_o_idx_V_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %d_o_idx_V)
+
+ST_1: d_i_idx_V_read (18)  [1/1] 0.00ns
+arrayctor.loop.preheader:4  %d_i_idx_V_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %d_i_idx_V)
+
+ST_1: layer_type_V_read (19)  [1/1] 0.00ns
+arrayctor.loop.preheader:5  %layer_type_V_read = call i2 @_ssdm_op_Read.ap_auto.i2(i2 %layer_type_V)
+
+ST_1: tmp (20)  [1/1] 0.76ns  loc: Accel.cpp:582
+arrayctor.loop.preheader:6  %tmp = icmp eq i2 %layer_type_V_read, -2
+
+ST_1: lhs_V (21)  [1/1] 0.00ns  loc: Accel.cpp:594
+arrayctor.loop.preheader:7  %lhs_V = zext i16 %o_index_V_read to i17
+
+ST_1: tmp_108 (22)  [1/1] 0.00ns  loc: Accel.cpp:595
+arrayctor.loop.preheader:8  %tmp_108 = trunc i16 %o_index_V_read to i6
+
+ST_1: sel_tmp (23)  [1/1] 0.71ns
+arrayctor.loop.preheader:9  %sel_tmp = xor i1 %d_o_idx_V_read, true
+
+ST_1: tmp_s (24)  [1/1] 0.00ns  loc: Accel.cpp:601
+arrayctor.loop.preheader:10  %tmp_s = zext i16 %n_inputs_read to i22
+
+ST_1: StgValue_28 (25)  [1/1] 0.89ns  loc: Accel.cpp:592
+arrayctor.loop.preheader:11  br label %0
+
+
+ <State 2>: 3.41ns
+ST_2: p_Val2_7 (27)  [1/1] 0.00ns
+:0  %p_Val2_7 = phi i16 [ -16384, %arrayctor.loop.preheader ], [ %best_out_V_2, %._crit_edge149022 ]
+
+ST_2: p_Val2_s (28)  [1/1] 0.00ns
+:1  %p_Val2_s = phi i8 [ -1, %arrayctor.loop.preheader ], [ %prediction_V_2, %._crit_edge149022 ]
+
+ST_2: p_s (29)  [1/1] 0.00ns
+:2  %p_s = phi i16 [ 0, %arrayctor.loop.preheader ], [ %o_V, %._crit_edge149022 ]
+
+ST_2: phi_mul (30)  [1/1] 0.00ns  loc: Accel.cpp:601
+:3  %phi_mul = phi i22 [ 0, %arrayctor.loop.preheader ], [ %next_mul, %._crit_edge149022 ]
+
+ST_2: next_mul (31)  [1/1] 1.48ns  loc: Accel.cpp:601
+:4  %next_mul = add i22 %phi_mul, %tmp_s
+
+ST_2: exitcond (32)  [1/1] 1.26ns  loc: Accel.cpp:592
+:5  %exitcond = icmp eq i16 %p_s, %n_outputs_read
+
+ST_2: o_V (33)  [1/1] 1.36ns  loc: Accel.cpp:592
+:6  %o_V = add i16 %p_s, 1
+
+ST_2: StgValue_36 (34)  [1/1] 0.00ns  loc: Accel.cpp:592
+:7  br i1 %exitcond, label %2, label %_ifconv
+
+ST_2: rhs_V (39)  [1/1] 0.00ns  loc: Accel.cpp:594
+_ifconv:3  %rhs_V = zext i16 %p_s to i17
+
+ST_2: tmp_43 (40)  [1/1] 1.36ns  loc: Accel.cpp:592
+_ifconv:4  %tmp_43 = add i16 %o_index_V_read, %p_s
+
+ST_2: r_V (41)  [1/1] 1.36ns  loc: Accel.cpp:594
+_ifconv:5  %r_V = add i17 %rhs_V, %lhs_V
+
+ST_2: tmp_50 (44)  [1/1] 0.00ns  loc: Accel.cpp:596
+_ifconv:8  %tmp_50 = call i10 @_ssdm_op_PartSelect.i10.i17.i32.i32(i17 %r_V, i32 7, i32 16)
+
+ST_2: tmp_51 (45)  [1/1] 0.00ns  loc: Accel.cpp:596
+_ifconv:9  %tmp_51 = zext i10 %tmp_50 to i64
+
+ST_2: tmp_120 (46)  [1/1] 0.00ns  loc: Accel.cpp:592
+_ifconv:10  %tmp_120 = call i1 @_ssdm_op_BitSelect.i1.i16.i32(i16 %tmp_43, i32 6)
+
+ST_2: dmem_0_0_V_addr (47)  [1/1] 0.00ns  loc: Accel.cpp:596
+_ifconv:11  %dmem_0_0_V_addr = getelementptr [1024 x i64]* %dmem_0_0_V, i64 0, i64 %tmp_51
+
+ST_2: dmem_0_1_V_addr (48)  [1/1] 0.00ns  loc: Accel.cpp:596
+_ifconv:12  %dmem_0_1_V_addr = getelementptr [1024 x i64]* %dmem_0_1_V, i64 0, i64 %tmp_51
+
+ST_2: dmem_1_0_V_addr (49)  [1/1] 0.00ns  loc: Accel.cpp:596
+_ifconv:13  %dmem_1_0_V_addr = getelementptr [1024 x i64]* %dmem_1_0_V, i64 0, i64 %tmp_51
+
+ST_2: dmem_1_1_V_addr (50)  [1/1] 0.00ns  loc: Accel.cpp:596
+_ifconv:14  %dmem_1_1_V_addr = getelementptr [1024 x i64]* %dmem_1_1_V, i64 0, i64 %tmp_51
+
+ST_2: dmem_1_1_V_load (51)  [2/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:15  %dmem_1_1_V_load = load i64* %dmem_1_1_V_addr, align 8
+
+ST_2: dmem_1_0_V_load (52)  [2/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:16  %dmem_1_0_V_load = load i64* %dmem_1_0_V_addr, align 8
+
+ST_2: dmem_0_1_V_load (53)  [2/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:17  %dmem_0_1_V_load = load i64* %dmem_0_1_V_addr, align 8
+
+ST_2: dmem_0_0_V_load (54)  [2/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:18  %dmem_0_0_V_load = load i64* %dmem_0_0_V_addr, align 8
+
+ST_2: tmp_48 (420)  [1/1] 0.76ns  loc: Accel.cpp:674
+:0  %tmp_48 = icmp eq i2 %layer_type_V_read, -1
+
+ST_2: StgValue_52 (421)  [1/1] 0.00ns  loc: Accel.cpp:674
+:1  br i1 %tmp_48, label %3, label %._crit_edge1491
+
+ST_2: p_Result_9 (423)  [1/1] 0.00ns  loc: Accel.cpp:677
+:0  %p_Result_9 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %p_Val2_s)
+
+ST_2: dmem_0_0_V_addr_2 (424)  [1/1] 0.00ns
+:1  %dmem_0_0_V_addr_2 = getelementptr [1024 x i64]* %dmem_0_0_V, i64 0, i64 0
+
+ST_2: dmem_1_0_V_addr_2 (425)  [1/1] 0.00ns
+:2  %dmem_1_0_V_addr_2 = getelementptr [1024 x i64]* %dmem_1_0_V, i64 0, i64 0
+
+ST_2: StgValue_56 (426)  [1/1] 0.00ns  loc: Accel.cpp:678
+:3  br i1 %d_o_idx_V_read, label %branch1, label %branch0
+
+ST_2: StgValue_57 (428)  [1/1] 2.05ns  loc: Accel.cpp:678
+branch0:0  store i64 %p_Result_9, i64* %dmem_0_0_V_addr_2, align 8
+
+ST_2: StgValue_58 (429)  [1/1] 0.00ns  loc: Accel.cpp:678
+branch0:1  br label %4
+
+ST_2: StgValue_59 (431)  [1/1] 2.05ns  loc: Accel.cpp:678
+branch1:0  store i64 %p_Result_9, i64* %dmem_1_0_V_addr_2, align 8
+
+ST_2: StgValue_60 (432)  [1/1] 0.00ns  loc: Accel.cpp:678
+branch1:1  br label %4
+
+ST_2: StgValue_61 (434)  [1/1] 0.00ns  loc: Accel.cpp:679
+:0  br label %._crit_edge1491
+
+ST_2: StgValue_62 (436)  [1/1] 0.00ns  loc: Accel.cpp:680
+._crit_edge1491:0  ret void
+
+
+ <State 3>: 4.18ns
+ST_3: StgValue_63 (36)  [1/1] 0.00ns  loc: Accel.cpp:592
+_ifconv:0  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str1845) nounwind
+
+ST_3: tmp_49 (37)  [1/1] 0.00ns  loc: Accel.cpp:592
+_ifconv:1  %tmp_49 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1845)
+
+ST_3: StgValue_65 (38)  [1/1] 0.00ns  loc: Accel.cpp:593
+_ifconv:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 1, i32 1, [1 x i8]* @p_str1813) nounwind
+
+ST_3: tmp_113 (42)  [1/1] 0.00ns  loc: Accel.cpp:595
+_ifconv:6  %tmp_113 = trunc i16 %p_s to i6
+
+ST_3: o_offset_V (43)  [1/1] 1.24ns  loc: Accel.cpp:595
+_ifconv:7  %o_offset_V = add i6 %tmp_113, %tmp_108
+
+ST_3: dmem_1_1_V_load (51)  [1/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:15  %dmem_1_1_V_load = load i64* %dmem_1_1_V_addr, align 8
+
+ST_3: dmem_1_0_V_load (52)  [1/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:16  %dmem_1_0_V_load = load i64* %dmem_1_0_V_addr, align 8
+
+ST_3: dmem_0_1_V_load (53)  [1/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:17  %dmem_0_1_V_load = load i64* %dmem_0_1_V_addr, align 8
+
+ST_3: dmem_0_0_V_load (54)  [1/2] 2.05ns  loc: Accel.cpp:596
+_ifconv:18  %dmem_0_0_V_load = load i64* %dmem_0_0_V_addr, align 8
+
+ST_3: sel_tmp1 (55)  [1/1] 0.00ns  loc: Accel.cpp:592 (grouped into LUT with out node sel_tmp2)
+_ifconv:19  %sel_tmp1 = and i1 %tmp_120, %sel_tmp
+
+ST_3: sel_tmp2 (56)  [1/1] 0.71ns  loc: Accel.cpp:596 (out node of the LUT)
+_ifconv:20  %sel_tmp2 = select i1 %sel_tmp1, i64 %dmem_0_1_V_load, i64 %dmem_0_0_V_load
+
+ST_3: sel_tmp3 (57)  [1/1] 0.00ns  loc: Accel.cpp:592 (grouped into LUT with out node sel_tmp5)
+_ifconv:21  %sel_tmp3 = xor i1 %tmp_120, true
+
+ST_3: sel_tmp4 (58)  [1/1] 0.00ns  loc: Accel.cpp:592 (grouped into LUT with out node sel_tmp5)
+_ifconv:22  %sel_tmp4 = and i1 %d_o_idx_V_read, %sel_tmp3
+
+ST_3: sel_tmp5 (59)  [1/1] 0.71ns  loc: Accel.cpp:596 (out node of the LUT)
+_ifconv:23  %sel_tmp5 = select i1 %sel_tmp4, i64 %dmem_1_0_V_load, i64 %sel_tmp2
+
+ST_3: sel_tmp6 (60)  [1/1] 0.00ns  loc: Accel.cpp:592 (grouped into LUT with out node o_word_V_4)
+_ifconv:24  %sel_tmp6 = and i1 %tmp_120, %d_o_idx_V_read
+
+ST_3: o_word_V_4 (61)  [1/1] 0.71ns  loc: Accel.cpp:596 (out node of the LUT)
+_ifconv:25  %o_word_V_4 = select i1 %sel_tmp6, i64 %dmem_1_1_V_load, i64 %sel_tmp5
+
+ST_3: StgValue_79 (62)  [1/1] 0.89ns  loc: Accel.cpp:600
+_ifconv:26  br label %1
+
+
+ <State 4>: 3.53ns
+ST_4: p_Val2_3 (64)  [1/1] 0.00ns  loc: Accel.cpp:624
+:0  %p_Val2_3 = phi i16 [ 0, %_ifconv ], [ %sum_V_1, %_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv ]
+
+ST_4: p_5 (65)  [1/1] 0.00ns
+:1  %p_5 = phi i16 [ 0, %_ifconv ], [ %i_V, %_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv ]
+
+ST_4: tmp_52 (66)  [1/1] 1.26ns  loc: Accel.cpp:600
+:2  %tmp_52 = icmp ult i16 %p_5, %n_inputs_read
+
+ST_4: StgValue_83 (67)  [1/1] 0.00ns  loc: Accel.cpp:600
+:3  br i1 %tmp_52, label %_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv, label %_ifconv8
+
+ST_4: rhs_V_4_cast (73)  [1/1] 0.00ns  loc: Accel.cpp:601
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:4  %rhs_V_4_cast = zext i16 %p_5 to i22
+
+ST_4: r_V_7 (74)  [1/1] 1.48ns  loc: Accel.cpp:601
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:5  %r_V_7 = add i22 %rhs_V_4_cast, %phi_mul
+
+ST_4: r_V_9 (75)  [1/1] 0.00ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:6  %r_V_9 = call i9 @_ssdm_op_PartSelect.i9.i16.i32.i32(i16 %p_5, i32 7, i32 15)
+
+ST_4: tmp_54 (76)  [1/1] 0.00ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:7  %tmp_54 = zext i9 %r_V_9 to i64
+
+ST_4: p_0856_s (77)  [1/1] 0.00ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:8  %p_0856_s = call i15 @_ssdm_op_PartSelect.i15.i22.i32.i32(i22 %r_V_7, i32 7, i32 21)
+
+ST_4: tmp_55 (78)  [1/1] 0.00ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:9  %tmp_55 = zext i15 %p_0856_s to i64
+
+ST_4: dmem_0_0_V_addr_3 (79)  [1/1] 0.00ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:10  %dmem_0_0_V_addr_3 = getelementptr [1024 x i64]* %dmem_0_0_V, i64 0, i64 %tmp_54
+
+ST_4: dmem_1_0_V_addr_3 (80)  [1/1] 0.00ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:11  %dmem_1_0_V_addr_3 = getelementptr [1024 x i64]* %dmem_1_0_V, i64 0, i64 %tmp_54
+
+ST_4: dmem_1_0_V_load_1 (81)  [2/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:12  %dmem_1_0_V_load_1 = load i64* %dmem_1_0_V_addr_3, align 8
+
+ST_4: dmem_0_0_V_load_1 (82)  [2/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:13  %dmem_0_0_V_load_1 = load i64* %dmem_0_0_V_addr_3, align 8
+
+ST_4: wt_mem_0_V_addr (84)  [1/1] 0.00ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:15  %wt_mem_0_V_addr = getelementptr [2341 x i64]* %wt_mem_0_V, i64 0, i64 %tmp_55
+
+ST_4: wt_mem_0_V_load (85)  [2/2] 2.05ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:16  %wt_mem_0_V_load = load i64* %wt_mem_0_V_addr, align 8
+
+ST_4: dmem_0_1_V_addr_2 (203)  [1/1] 0.00ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:134  %dmem_0_1_V_addr_2 = getelementptr [1024 x i64]* %dmem_0_1_V, i64 0, i64 %tmp_54
+
+ST_4: dmem_1_1_V_addr_2 (204)  [1/1] 0.00ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:135  %dmem_1_1_V_addr_2 = getelementptr [1024 x i64]* %dmem_1_1_V, i64 0, i64 %tmp_54
+
+ST_4: dmem_1_1_V_load_1 (205)  [2/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:136  %dmem_1_1_V_load_1 = load i64* %dmem_1_1_V_addr_2, align 8
+
+ST_4: dmem_0_1_V_load_1 (206)  [2/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:137  %dmem_0_1_V_load_1 = load i64* %dmem_0_1_V_addr_2, align 8
+
+ST_4: wt_mem_1_V_addr (208)  [1/1] 0.00ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:139  %wt_mem_1_V_addr = getelementptr [2341 x i64]* %wt_mem_1_V, i64 0, i64 %tmp_55
+
+ST_4: wt_mem_1_V_load (209)  [2/2] 2.05ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:140  %wt_mem_1_V_load = load i64* %wt_mem_1_V_addr, align 8
+
+ST_4: i_V (331)  [1/1] 1.36ns  loc: Accel.cpp:600
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:262  %i_V = add i16 128, %p_5
+
+
+ <State 5>: 2.76ns
+ST_5: dmem_1_0_V_load_1 (81)  [1/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:12  %dmem_1_0_V_load_1 = load i64* %dmem_1_0_V_addr_3, align 8
+
+ST_5: dmem_0_0_V_load_1 (82)  [1/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:13  %dmem_0_0_V_load_1 = load i64* %dmem_0_0_V_addr_3, align 8
+
+ST_5: in_wrd_V_0_phi (83)  [1/1] 0.00ns  loc: Accel.cpp:606 (grouped into LUT with out node r_V_s)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:14  %in_wrd_V_0_phi = select i1 %d_i_idx_V_read, i64 %dmem_1_0_V_load_1, i64 %dmem_0_0_V_load_1
+
+ST_5: wt_mem_0_V_load (85)  [1/2] 2.05ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:16  %wt_mem_0_V_load = load i64* %wt_mem_0_V_addr, align 8
+
+ST_5: r_V_s (86)  [1/1] 0.71ns  loc: Accel.cpp:609 (out node of the LUT)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:17  %r_V_s = xor i64 %wt_mem_0_V_load, %in_wrd_V_0_phi
+
+ST_5: tmp_123 (87)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:18  %tmp_123 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 63)
+
+ST_5: tmp_124 (88)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:19  %tmp_124 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 61)
+
+ST_5: tmp_125 (89)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:20  %tmp_125 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 59)
+
+ST_5: tmp_126 (90)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:21  %tmp_126 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 57)
+
+ST_5: tmp_127 (91)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:22  %tmp_127 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 55)
+
+ST_5: tmp_128 (92)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:23  %tmp_128 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 53)
+
+ST_5: tmp_129 (93)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:24  %tmp_129 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 51)
+
+ST_5: tmp_145 (94)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:25  %tmp_145 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 49)
+
+ST_5: tmp_171 (95)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:26  %tmp_171 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 47)
+
+ST_5: tmp_175 (96)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:27  %tmp_175 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 45)
+
+ST_5: tmp_176 (97)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:28  %tmp_176 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 43)
+
+ST_5: tmp_177 (98)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:29  %tmp_177 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 41)
+
+ST_5: tmp_178 (99)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:30  %tmp_178 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 39)
+
+ST_5: tmp_179 (100)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:31  %tmp_179 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 37)
+
+ST_5: tmp_180 (101)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:32  %tmp_180 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 35)
+
+ST_5: tmp_181 (102)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:33  %tmp_181 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 33)
+
+ST_5: tmp_182 (103)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:34  %tmp_182 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 31)
+
+ST_5: tmp_183 (104)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:35  %tmp_183 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 29)
+
+ST_5: tmp_184 (105)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:36  %tmp_184 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 27)
+
+ST_5: tmp_185 (106)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:37  %tmp_185 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 25)
+
+ST_5: tmp_186 (107)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:38  %tmp_186 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 23)
+
+ST_5: tmp_187 (108)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:39  %tmp_187 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 21)
+
+ST_5: tmp_188 (109)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:40  %tmp_188 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 19)
+
+ST_5: tmp_189 (110)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:41  %tmp_189 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 17)
+
+ST_5: tmp_190 (111)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:42  %tmp_190 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 15)
+
+ST_5: tmp_191 (112)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:43  %tmp_191 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 13)
+
+ST_5: tmp_192 (113)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:44  %tmp_192 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 11)
+
+ST_5: tmp_193 (114)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:45  %tmp_193 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 9)
+
+ST_5: tmp_194 (115)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:46  %tmp_194 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 7)
+
+ST_5: tmp_195 (116)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:47  %tmp_195 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 5)
+
+ST_5: tmp_196 (117)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:48  %tmp_196 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 3)
+
+ST_5: tmp_197 (118)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:49  %tmp_197 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 1)
+
+ST_5: dmem_1_1_V_load_1 (205)  [1/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:136  %dmem_1_1_V_load_1 = load i64* %dmem_1_1_V_addr_2, align 8
+
+ST_5: dmem_0_1_V_load_1 (206)  [1/2] 2.05ns  loc: Accel.cpp:606
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:137  %dmem_0_1_V_load_1 = load i64* %dmem_0_1_V_addr_2, align 8
+
+ST_5: in_wrd_V_1_phi (207)  [1/1] 0.00ns  loc: Accel.cpp:606 (grouped into LUT with out node r_V_49_1)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:138  %in_wrd_V_1_phi = select i1 %d_i_idx_V_read, i64 %dmem_1_1_V_load_1, i64 %dmem_0_1_V_load_1
+
+ST_5: wt_mem_1_V_load (209)  [1/2] 2.05ns  loc: Accel.cpp:607
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:140  %wt_mem_1_V_load = load i64* %wt_mem_1_V_addr, align 8
+
+ST_5: r_V_49_1 (210)  [1/1] 0.71ns  loc: Accel.cpp:609 (out node of the LUT)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:141  %r_V_49_1 = xor i64 %wt_mem_1_V_load, %in_wrd_V_1_phi
+
+ST_5: tmp_200 (211)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:142  %tmp_200 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 63)
+
+ST_5: tmp_201 (212)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:143  %tmp_201 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 61)
+
+ST_5: tmp_202 (213)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:144  %tmp_202 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 59)
+
+ST_5: tmp_203 (214)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:145  %tmp_203 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 57)
+
+ST_5: tmp_204 (215)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:146  %tmp_204 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 55)
+
+ST_5: tmp_205 (216)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:147  %tmp_205 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 53)
+
+ST_5: tmp_206 (217)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:148  %tmp_206 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 51)
+
+ST_5: tmp_222 (218)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:149  %tmp_222 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 49)
+
+ST_5: tmp_248 (219)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:150  %tmp_248 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 47)
+
+ST_5: tmp_252 (220)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:151  %tmp_252 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 45)
+
+ST_5: tmp_256 (221)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:152  %tmp_256 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 43)
+
+ST_5: tmp_257 (222)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:153  %tmp_257 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 41)
+
+ST_5: tmp_258 (223)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:154  %tmp_258 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 39)
+
+ST_5: tmp_259 (224)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:155  %tmp_259 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 37)
+
+ST_5: tmp_260 (225)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:156  %tmp_260 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 35)
+
+ST_5: tmp_261 (226)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:157  %tmp_261 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 33)
+
+ST_5: tmp_262 (227)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:158  %tmp_262 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 31)
+
+ST_5: tmp_263 (228)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:159  %tmp_263 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 29)
+
+ST_5: tmp_264 (229)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:160  %tmp_264 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 27)
+
+ST_5: tmp_265 (230)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:161  %tmp_265 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 25)
+
+ST_5: tmp_266 (231)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:162  %tmp_266 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 23)
+
+ST_5: tmp_267 (232)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:163  %tmp_267 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 21)
+
+ST_5: tmp_268 (233)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:164  %tmp_268 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 19)
+
+ST_5: tmp_269 (234)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:165  %tmp_269 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 17)
+
+ST_5: tmp_270 (235)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:166  %tmp_270 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 15)
+
+ST_5: tmp_271 (236)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:167  %tmp_271 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 13)
+
+ST_5: tmp_272 (237)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:168  %tmp_272 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 11)
+
+ST_5: tmp_273 (238)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:169  %tmp_273 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 9)
+
+ST_5: tmp_274 (239)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:170  %tmp_274 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 7)
+
+ST_5: tmp_275 (240)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:171  %tmp_275 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 5)
+
+ST_5: tmp_276 (241)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:172  %tmp_276 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 3)
+
+ST_5: tmp_277 (242)  [1/1] 0.00ns  loc: Accel.cpp:609
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:173  %tmp_277 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 1)
+
+
+ <State 6>: 2.08ns
+ST_6: r_V_1 (119)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:50  %r_V_1 = call i63 @_ssdm_op_BitConcatenate.i63.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1(i1 %tmp_123, i1 false, i1 %tmp_124, i1 false, i1 %tmp_125, i1 false, i1 %tmp_126, i1 false, i1 %tmp_127, i1 false, i1 %tmp_128, i1 false, i1 %tmp_129, i1 false, i1 %tmp_145, i1 false, i1 %tmp_171, i1 false, i1 %tmp_175, i1 false, i1 %tmp_176, i1 false, i1 %tmp_177, i1 false, i1 %tmp_178, i1 false, i1 %tmp_179, i1 false, i1 %tmp_180, i1 false, i1 %tmp_181, i1 false, i1 %tmp_182, i1 false, i1 %tmp_183, i1 false, i1 %tmp_184, i1 false, i1 %tmp_185, i1 false, i1 %tmp_186, i1 false, i1 %tmp_187, i1 false, i1 %tmp_188, i1 false, i1 %tmp_189, i1 false, i1 %tmp_190, i1 false, i1 %tmp_191, i1 false, i1 %tmp_192, i1 false, i1 %tmp_193, i1 false, i1 %tmp_194, i1 false, i1 %tmp_195, i1 false, i1 %tmp_196, i1 false, i1 %tmp_197)
+
+ST_6: r_V_1_cast (120)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:51  %r_V_1_cast = zext i63 %r_V_1 to i64
+
+ST_6: x_V_6 (121)  [1/1] 2.08ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:52  %x_V_6 = sub nsw i64 %r_V_s, %r_V_1_cast
+
+ST_6: tmp_56 (122)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:53  %tmp_56 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 60, i32 61)
+
+ST_6: tmp_57 (123)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:54  %tmp_57 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 56, i32 57)
+
+ST_6: tmp_58 (124)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:55  %tmp_58 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 52, i32 53)
+
+ST_6: tmp_59 (125)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:56  %tmp_59 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 48, i32 49)
+
+ST_6: tmp_60 (126)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:57  %tmp_60 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 44, i32 45)
+
+ST_6: tmp_61 (127)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:58  %tmp_61 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 40, i32 41)
+
+ST_6: tmp_62 (128)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:59  %tmp_62 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 36, i32 37)
+
+ST_6: tmp_63 (129)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:60  %tmp_63 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 32, i32 33)
+
+ST_6: tmp_64 (130)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:61  %tmp_64 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 28, i32 29)
+
+ST_6: tmp_65 (131)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:62  %tmp_65 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 24, i32 25)
+
+ST_6: tmp_66 (132)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:63  %tmp_66 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 20, i32 21)
+
+ST_6: tmp_67 (133)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:64  %tmp_67 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 16, i32 17)
+
+ST_6: tmp_68 (134)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:65  %tmp_68 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 12, i32 13)
+
+ST_6: tmp_69 (135)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:66  %tmp_69 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 8, i32 9)
+
+ST_6: tmp_70 (136)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:67  %tmp_70 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 4, i32 5)
+
+ST_6: tmp_198 (137)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:68  %tmp_198 = trunc i64 %x_V_6 to i2
+
+ST_6: tmp_71 (140)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:71  %tmp_71 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 62, i32 63)
+
+ST_6: tmp_72 (141)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:72  %tmp_72 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 58, i32 59)
+
+ST_6: tmp_73 (142)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:73  %tmp_73 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 54, i32 55)
+
+ST_6: tmp_76 (143)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:74  %tmp_76 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 50, i32 51)
+
+ST_6: tmp_83 (144)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:75  %tmp_83 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 46, i32 47)
+
+ST_6: tmp_94 (145)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:76  %tmp_94 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 42, i32 43)
+
+ST_6: tmp_130 (146)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:77  %tmp_130 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 38, i32 39)
+
+ST_6: tmp_131 (147)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:78  %tmp_131 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 34, i32 35)
+
+ST_6: tmp_132 (148)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:79  %tmp_132 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 30, i32 31)
+
+ST_6: tmp_133 (149)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:80  %tmp_133 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 26, i32 27)
+
+ST_6: tmp_134 (150)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:81  %tmp_134 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 22, i32 23)
+
+ST_6: tmp_135 (151)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:82  %tmp_135 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 18, i32 19)
+
+ST_6: tmp_136 (152)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:83  %tmp_136 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 14, i32 15)
+
+ST_6: tmp_137 (153)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:84  %tmp_137 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 10, i32 11)
+
+ST_6: tmp_138 (154)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:85  %tmp_138 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 6, i32 7)
+
+ST_6: tmp_139 (155)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:86  %tmp_139 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 2, i32 3)
+
+ST_6: r_V_44_1 (243)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:174  %r_V_44_1 = call i63 @_ssdm_op_BitConcatenate.i63.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1(i1 %tmp_200, i1 false, i1 %tmp_201, i1 false, i1 %tmp_202, i1 false, i1 %tmp_203, i1 false, i1 %tmp_204, i1 false, i1 %tmp_205, i1 false, i1 %tmp_206, i1 false, i1 %tmp_222, i1 false, i1 %tmp_248, i1 false, i1 %tmp_252, i1 false, i1 %tmp_256, i1 false, i1 %tmp_257, i1 false, i1 %tmp_258, i1 false, i1 %tmp_259, i1 false, i1 %tmp_260, i1 false, i1 %tmp_261, i1 false, i1 %tmp_262, i1 false, i1 %tmp_263, i1 false, i1 %tmp_264, i1 false, i1 %tmp_265, i1 false, i1 %tmp_266, i1 false, i1 %tmp_267, i1 false, i1 %tmp_268, i1 false, i1 %tmp_269, i1 false, i1 %tmp_270, i1 false, i1 %tmp_271, i1 false, i1 %tmp_272, i1 false, i1 %tmp_273, i1 false, i1 %tmp_274, i1 false, i1 %tmp_275, i1 false, i1 %tmp_276, i1 false, i1 %tmp_277)
+
+ST_6: r_V_44_1_cast (244)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:175  %r_V_44_1_cast = zext i63 %r_V_44_1 to i64
+
+ST_6: x_V_6_1 (245)  [1/1] 2.08ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:176  %x_V_6_1 = sub nsw i64 %r_V_49_1, %r_V_44_1_cast
+
+ST_6: tmp_153 (246)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:177  %tmp_153 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 60, i32 61)
+
+ST_6: tmp_154 (247)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:178  %tmp_154 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 56, i32 57)
+
+ST_6: tmp_155 (248)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:179  %tmp_155 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 52, i32 53)
+
+ST_6: tmp_156 (249)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:180  %tmp_156 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 48, i32 49)
+
+ST_6: tmp_157 (250)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:181  %tmp_157 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 44, i32 45)
+
+ST_6: tmp_158 (251)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:182  %tmp_158 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 40, i32 41)
+
+ST_6: tmp_159 (252)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:183  %tmp_159 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 36, i32 37)
+
+ST_6: tmp_160 (253)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:184  %tmp_160 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 32, i32 33)
+
+ST_6: tmp_161 (254)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:185  %tmp_161 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 28, i32 29)
+
+ST_6: tmp_162 (255)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:186  %tmp_162 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 24, i32 25)
+
+ST_6: tmp_163 (256)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:187  %tmp_163 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 20, i32 21)
+
+ST_6: tmp_164 (257)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:188  %tmp_164 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 16, i32 17)
+
+ST_6: tmp_165 (258)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:189  %tmp_165 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 12, i32 13)
+
+ST_6: tmp_166 (259)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:190  %tmp_166 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 8, i32 9)
+
+ST_6: tmp_167 (260)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:191  %tmp_167 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 4, i32 5)
+
+ST_6: tmp_278 (261)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:192  %tmp_278 = trunc i64 %x_V_6_1 to i2
+
+ST_6: tmp_168 (264)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:195  %tmp_168 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 62, i32 63)
+
+ST_6: tmp_169 (265)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:196  %tmp_169 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 58, i32 59)
+
+ST_6: tmp_170 (266)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:197  %tmp_170 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 54, i32 55)
+
+ST_6: tmp_172 (267)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:198  %tmp_172 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 50, i32 51)
+
+ST_6: tmp_173 (268)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:199  %tmp_173 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 46, i32 47)
+
+ST_6: tmp_174 (269)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:200  %tmp_174 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 42, i32 43)
+
+ST_6: tmp_207 (270)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:201  %tmp_207 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 38, i32 39)
+
+ST_6: tmp_208 (271)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:202  %tmp_208 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 34, i32 35)
+
+ST_6: tmp_209 (272)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:203  %tmp_209 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 30, i32 31)
+
+ST_6: tmp_210 (273)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:204  %tmp_210 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 26, i32 27)
+
+ST_6: tmp_211 (274)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:205  %tmp_211 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 22, i32 23)
+
+ST_6: tmp_212 (275)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:206  %tmp_212 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 18, i32 19)
+
+ST_6: tmp_213 (276)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:207  %tmp_213 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 14, i32 15)
+
+ST_6: tmp_214 (277)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:208  %tmp_214 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 10, i32 11)
+
+ST_6: tmp_215 (278)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:209  %tmp_215 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 6, i32 7)
+
+ST_6: tmp_216 (279)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:210  %tmp_216 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 2, i32 3)
+
+
+ <State 7>: 3.66ns
+ST_7: r_V_2 (138)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:69  %r_V_2 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_56, i2 0, i2 %tmp_57, i2 0, i2 %tmp_58, i2 0, i2 %tmp_59, i2 0, i2 %tmp_60, i2 0, i2 %tmp_61, i2 0, i2 %tmp_62, i2 0, i2 %tmp_63, i2 0, i2 %tmp_64, i2 0, i2 %tmp_65, i2 0, i2 %tmp_66, i2 0, i2 %tmp_67, i2 0, i2 %tmp_68, i2 0, i2 %tmp_69, i2 0, i2 %tmp_70, i2 0, i2 %tmp_198)
+
+ST_7: r_V_2_cast (139)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:70  %r_V_2_cast = zext i62 %r_V_2 to i63
+
+ST_7: r_V_3 (156)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:87  %r_V_3 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_71, i2 0, i2 %tmp_72, i2 0, i2 %tmp_73, i2 0, i2 %tmp_76, i2 0, i2 %tmp_83, i2 0, i2 %tmp_94, i2 0, i2 %tmp_130, i2 0, i2 %tmp_131, i2 0, i2 %tmp_132, i2 0, i2 %tmp_133, i2 0, i2 %tmp_134, i2 0, i2 %tmp_135, i2 0, i2 %tmp_136, i2 0, i2 %tmp_137, i2 0, i2 %tmp_138, i2 0, i2 %tmp_139)
+
+ST_7: r_V_3_cast (157)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:88  %r_V_3_cast = zext i62 %r_V_3 to i63
+
+ST_7: tmp_74 (158)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:89  %tmp_74 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_72, i2 0, i2 %tmp_73, i2 0, i2 %tmp_76, i2 0, i2 %tmp_83, i2 0, i2 %tmp_94, i2 0, i2 %tmp_130, i2 0, i2 %tmp_131, i2 0, i2 %tmp_132, i2 0, i2 %tmp_133, i2 0, i2 %tmp_134, i2 0, i2 %tmp_135, i2 0, i2 %tmp_136, i2 0, i2 %tmp_137, i2 0, i2 %tmp_138, i2 0, i2 %tmp_139)
+
+ST_7: tmp_75 (159)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:90  %tmp_75 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_57, i2 0, i2 %tmp_58, i2 0, i2 %tmp_59, i2 0, i2 %tmp_60, i2 0, i2 %tmp_61, i2 0, i2 %tmp_62, i2 0, i2 %tmp_63, i2 0, i2 %tmp_64, i2 0, i2 %tmp_65, i2 0, i2 %tmp_66, i2 0, i2 %tmp_67, i2 0, i2 %tmp_68, i2 0, i2 %tmp_69, i2 0, i2 %tmp_70, i2 0, i2 %tmp_198)
+
+ST_7: tmp_140 (160)  [1/1] 2.08ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:91  %tmp_140 = add i62 %r_V_3, %r_V_2
+
+ST_7: x_V (161)  [1/1] 2.08ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:92  %x_V = add i63 %r_V_2_cast, %r_V_3_cast
+
+ST_7: tmp_95_cast (162)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:93  %tmp_95_cast = zext i2 %tmp_139 to i4
+
+ST_7: tmp_96_cast (163)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:94  %tmp_96_cast = zext i2 %tmp_198 to i4
+
+ST_7: tmp_141 (164)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:95  %tmp_141 = call i59 @_ssdm_op_PartSelect.i59.i63.i32.i32(i63 %x_V, i32 4, i32 62)
+
+ST_7: tmp_77 (165)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:96  %tmp_77 = zext i59 %tmp_141 to i60
+
+ST_7: tmp_78 (166)  [1/1] 1.58ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:97  %tmp_78 = add i60 %tmp_74, %tmp_75
+
+ST_7: tmp_134_cast (167)  [1/1] 1.58ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:98  %tmp_134_cast = add i60 %tmp_78, %tmp_77
+
+ST_7: tmp_79 (168)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:99  %tmp_79 = call i4 @_ssdm_op_PartSelect.i4.i62.i32.i32(i62 %tmp_140, i32 4, i32 7)
+
+ST_7: tmp_142 (169)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:100  %tmp_142 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 56, i32 59)
+
+ST_7: tmp_143 (170)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:101  %tmp_143 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 48, i32 51)
+
+ST_7: tmp_144 (171)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:102  %tmp_144 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 40, i32 43)
+
+ST_7: tmp_146 (172)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:103  %tmp_146 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 32, i32 35)
+
+ST_7: tmp_147 (173)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:104  %tmp_147 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 24, i32 27)
+
+ST_7: tmp_148 (174)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:105  %tmp_148 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 16, i32 19)
+
+ST_7: tmp_149 (175)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:106  %tmp_149 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_134_cast, i32 8, i32 11)
+
+ST_7: tmp_199 (176)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:107  %tmp_199 = trunc i60 %tmp_134_cast to i4
+
+ST_7: tmp41 (182)  [1/1] 0.48ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:113  %tmp41 = add i4 %tmp_79, %tmp_96_cast
+
+ST_7: tmp_80 (183)  [1/1] 0.48ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:114  %tmp_80 = add i4 %tmp_95_cast, %tmp41
+
+ST_7: r_V_45_1 (262)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:193  %r_V_45_1 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_153, i2 0, i2 %tmp_154, i2 0, i2 %tmp_155, i2 0, i2 %tmp_156, i2 0, i2 %tmp_157, i2 0, i2 %tmp_158, i2 0, i2 %tmp_159, i2 0, i2 %tmp_160, i2 0, i2 %tmp_161, i2 0, i2 %tmp_162, i2 0, i2 %tmp_163, i2 0, i2 %tmp_164, i2 0, i2 %tmp_165, i2 0, i2 %tmp_166, i2 0, i2 %tmp_167, i2 0, i2 %tmp_278)
+
+ST_7: r_V_45_1_cast (263)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:194  %r_V_45_1_cast = zext i62 %r_V_45_1 to i63
+
+ST_7: r_V_46_1 (280)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:211  %r_V_46_1 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_168, i2 0, i2 %tmp_169, i2 0, i2 %tmp_170, i2 0, i2 %tmp_172, i2 0, i2 %tmp_173, i2 0, i2 %tmp_174, i2 0, i2 %tmp_207, i2 0, i2 %tmp_208, i2 0, i2 %tmp_209, i2 0, i2 %tmp_210, i2 0, i2 %tmp_211, i2 0, i2 %tmp_212, i2 0, i2 %tmp_213, i2 0, i2 %tmp_214, i2 0, i2 %tmp_215, i2 0, i2 %tmp_216)
+
+ST_7: r_V_46_1_cast (281)  [1/1] 0.00ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:212  %r_V_46_1_cast = zext i62 %r_V_46_1 to i63
+
+ST_7: tmp_97 (282)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:213  %tmp_97 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_169, i2 0, i2 %tmp_170, i2 0, i2 %tmp_172, i2 0, i2 %tmp_173, i2 0, i2 %tmp_174, i2 0, i2 %tmp_207, i2 0, i2 %tmp_208, i2 0, i2 %tmp_209, i2 0, i2 %tmp_210, i2 0, i2 %tmp_211, i2 0, i2 %tmp_212, i2 0, i2 %tmp_213, i2 0, i2 %tmp_214, i2 0, i2 %tmp_215, i2 0, i2 %tmp_216)
+
+ST_7: tmp_98 (283)  [1/1] 0.00ns  loc: Accel.cpp:612
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:214  %tmp_98 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_154, i2 0, i2 %tmp_155, i2 0, i2 %tmp_156, i2 0, i2 %tmp_157, i2 0, i2 %tmp_158, i2 0, i2 %tmp_159, i2 0, i2 %tmp_160, i2 0, i2 %tmp_161, i2 0, i2 %tmp_162, i2 0, i2 %tmp_163, i2 0, i2 %tmp_164, i2 0, i2 %tmp_165, i2 0, i2 %tmp_166, i2 0, i2 %tmp_167, i2 0, i2 %tmp_278)
+
+ST_7: tmp_217 (284)  [1/1] 2.08ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:215  %tmp_217 = add i62 %r_V_46_1, %r_V_45_1
+
+ST_7: x_V_1 (285)  [1/1] 2.08ns  loc: Accel.cpp:613
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:216  %x_V_1 = add i63 %r_V_45_1_cast, %r_V_46_1_cast
+
+ST_7: tmp_117_cast (286)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:217  %tmp_117_cast = zext i2 %tmp_216 to i4
+
+ST_7: tmp_118_cast (287)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:218  %tmp_118_cast = zext i2 %tmp_278 to i4
+
+ST_7: tmp_218 (288)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:219  %tmp_218 = call i59 @_ssdm_op_PartSelect.i59.i63.i32.i32(i63 %x_V_1, i32 4, i32 62)
+
+ST_7: tmp_99 (289)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:220  %tmp_99 = zext i59 %tmp_218 to i60
+
+ST_7: tmp_100 (290)  [1/1] 1.58ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:221  %tmp_100 = add i60 %tmp_97, %tmp_98
+
+ST_7: tmp_168_1_cast (291)  [1/1] 1.58ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:222  %tmp_168_1_cast = add i60 %tmp_100, %tmp_99
+
+ST_7: tmp_101 (292)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:223  %tmp_101 = call i4 @_ssdm_op_PartSelect.i4.i62.i32.i32(i62 %tmp_217, i32 4, i32 7)
+
+ST_7: tmp_219 (293)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:224  %tmp_219 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 56, i32 59)
+
+ST_7: tmp_220 (294)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:225  %tmp_220 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 48, i32 51)
+
+ST_7: tmp_221 (295)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:226  %tmp_221 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 40, i32 43)
+
+ST_7: tmp_223 (296)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:227  %tmp_223 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 32, i32 35)
+
+ST_7: tmp_224 (297)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:228  %tmp_224 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 24, i32 27)
+
+ST_7: tmp_225 (298)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:229  %tmp_225 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 16, i32 19)
+
+ST_7: tmp_226 (299)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:230  %tmp_226 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_168_1_cast, i32 8, i32 11)
+
+ST_7: tmp_279 (300)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:231  %tmp_279 = trunc i60 %tmp_168_1_cast to i4
+
+ST_7: tmp44 (306)  [1/1] 0.48ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:237  %tmp44 = add i4 %tmp_101, %tmp_118_cast
+
+ST_7: tmp_102 (307)  [1/1] 0.48ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:238  %tmp_102 = add i4 %tmp_117_cast, %tmp44
+
+
+ <State 8>: 3.50ns
+ST_8: x_V_2 (177)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:108  %x_V_2 = call i60 @_ssdm_op_BitConcatenate.i60.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_142, i4 0, i4 %tmp_143, i4 0, i4 %tmp_144, i4 0, i4 %tmp_146, i4 0, i4 %tmp_147, i4 0, i4 %tmp_148, i4 0, i4 %tmp_149, i4 0, i4 %tmp_199)
+
+ST_8: x_V_2_cast (178)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:109  %x_V_2_cast = zext i60 %x_V_2 to i61
+
+ST_8: r_V_4 (179)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:110  %r_V_4 = call i52 @_ssdm_op_BitConcatenate.i52.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_142, i4 0, i4 %tmp_143, i4 0, i4 %tmp_144, i4 0, i4 %tmp_146, i4 0, i4 %tmp_147, i4 0, i4 %tmp_148, i4 0, i4 %tmp_149)
+
+ST_8: tmp_150 (180)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:111  %tmp_150 = zext i52 %r_V_4 to i60
+
+ST_8: r_V_4_cast (181)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:112  %r_V_4_cast = zext i52 %r_V_4 to i61
+
+ST_8: tmp_81 (184)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:115  %tmp_81 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_143, i4 0, i4 %tmp_144, i4 0, i4 %tmp_146, i4 0, i4 %tmp_147, i4 0, i4 %tmp_148, i4 0, i4 %tmp_149)
+
+ST_8: tmp_82 (185)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:116  %tmp_82 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_144, i4 0, i4 %tmp_146, i4 0, i4 %tmp_147, i4 0, i4 %tmp_148, i4 0, i4 %tmp_149, i4 0, i4 %tmp_199)
+
+ST_8: tmp_151 (186)  [1/1] 2.02ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:117  %tmp_151 = add i60 %tmp_150, %x_V_2
+
+ST_8: x_V_3 (187)  [1/1] 2.02ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:118  %x_V_3 = add i61 %x_V_2_cast, %r_V_4_cast
+
+ST_8: x_V_3_cast (188)  [1/1] 1.48ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:119  %x_V_3_cast = add i47 %tmp_81, %tmp_82
+
+ST_8: tmp_152 (189)  [1/1] 0.00ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:120  %tmp_152 = call i45 @_ssdm_op_PartSelect.i45.i61.i32.i32(i61 %x_V_3, i32 16, i32 60)
+
+ST_8: r_V_5_cast (190)  [1/1] 0.00ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:121  %r_V_5_cast = zext i45 %tmp_152 to i47
+
+ST_8: x_V_4 (191)  [1/1] 1.48ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:122  %x_V_4 = add i47 %x_V_3_cast, %r_V_5_cast
+
+ST_8: tmp_89 (194)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:125  %tmp_89 = call i7 @_ssdm_op_PartSelect.i7.i60.i32.i32(i60 %tmp_151, i32 16, i32 22)
+
+ST_8: tmp_90 (195)  [1/1] 0.00ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:126  %tmp_90 = call i7 @_ssdm_op_PartSelect.i7.i47.i32.i32(i47 %x_V_4, i32 32, i32 38)
+
+ST_8: x_V_2_1 (301)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:232  %x_V_2_1 = call i60 @_ssdm_op_BitConcatenate.i60.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_219, i4 0, i4 %tmp_220, i4 0, i4 %tmp_221, i4 0, i4 %tmp_223, i4 0, i4 %tmp_224, i4 0, i4 %tmp_225, i4 0, i4 %tmp_226, i4 0, i4 %tmp_279)
+
+ST_8: x_V_2_1_cast (302)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:233  %x_V_2_1_cast = zext i60 %x_V_2_1 to i61
+
+ST_8: r_V_47_1 (303)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:234  %r_V_47_1 = call i52 @_ssdm_op_BitConcatenate.i52.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_219, i4 0, i4 %tmp_220, i4 0, i4 %tmp_221, i4 0, i4 %tmp_223, i4 0, i4 %tmp_224, i4 0, i4 %tmp_225, i4 0, i4 %tmp_226)
+
+ST_8: tmp_227 (304)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:235  %tmp_227 = zext i52 %r_V_47_1 to i60
+
+ST_8: r_V_47_1_cast (305)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:236  %r_V_47_1_cast = zext i52 %r_V_47_1 to i61
+
+ST_8: tmp_103 (308)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:239  %tmp_103 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_220, i4 0, i4 %tmp_221, i4 0, i4 %tmp_223, i4 0, i4 %tmp_224, i4 0, i4 %tmp_225, i4 0, i4 %tmp_226)
+
+ST_8: tmp_104 (309)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:240  %tmp_104 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_221, i4 0, i4 %tmp_223, i4 0, i4 %tmp_224, i4 0, i4 %tmp_225, i4 0, i4 %tmp_226, i4 0, i4 %tmp_279)
+
+ST_8: tmp_228 (310)  [1/1] 2.02ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:241  %tmp_228 = add i60 %tmp_227, %x_V_2_1
+
+ST_8: x_V_3_1 (311)  [1/1] 2.02ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:242  %x_V_3_1 = add i61 %x_V_2_1_cast, %r_V_47_1_cast
+
+ST_8: x_V_3_1_cast (312)  [1/1] 1.48ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:243  %x_V_3_1_cast = add i47 %tmp_103, %tmp_104
+
+ST_8: tmp_229 (313)  [1/1] 0.00ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:244  %tmp_229 = call i45 @_ssdm_op_PartSelect.i45.i61.i32.i32(i61 %x_V_3_1, i32 16, i32 60)
+
+ST_8: r_V_48_1_cast (314)  [1/1] 0.00ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:245  %r_V_48_1_cast = zext i45 %tmp_229 to i47
+
+ST_8: x_V_4_1 (315)  [1/1] 1.48ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:246  %x_V_4_1 = add i47 %x_V_3_1_cast, %r_V_48_1_cast
+
+ST_8: tmp_115 (318)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:249  %tmp_115 = call i7 @_ssdm_op_PartSelect.i7.i60.i32.i32(i60 %tmp_228, i32 16, i32 22)
+
+ST_8: tmp_116 (319)  [1/1] 0.00ns  loc: Accel.cpp:616
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:250  %tmp_116 = call i7 @_ssdm_op_PartSelect.i7.i47.i32.i32(i47 %x_V_4_1, i32 32, i32 38)
+
+
+ <State 9>: 2.13ns
+ST_9: tmp_85 (192)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:123  %tmp_85 = call i7 @_ssdm_op_BitConcatenate.i7.i3.i4(i3 0, i4 %tmp_149)
+
+ST_9: tmp_88 (193)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:124  %tmp_88 = zext i4 %tmp_80 to i7
+
+ST_9: tmp_91 (196)  [1/1] 0.89ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:127  %tmp_91 = add i7 %tmp_85, %tmp_88
+
+ST_9: tmp_92 (197)  [1/1] 1.24ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:128  %tmp_92 = add i7 %tmp_89, %tmp_90
+
+ST_9: tmp_93 (198)  [1/1] 0.89ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:129  %tmp_93 = add i7 %tmp_92, %tmp_91
+
+ST_9: tmp_105 (316)  [1/1] 0.00ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:247  %tmp_105 = call i7 @_ssdm_op_BitConcatenate.i7.i3.i4(i3 0, i4 %tmp_226)
+
+ST_9: tmp_111 (317)  [1/1] 0.00ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:248  %tmp_111 = zext i4 %tmp_102 to i7
+
+ST_9: tmp_117 (320)  [1/1] 0.89ns  loc: Accel.cpp:614
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:251  %tmp_117 = add i7 %tmp_105, %tmp_111
+
+ST_9: tmp_118 (321)  [1/1] 1.24ns  loc: Accel.cpp:615
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:252  %tmp_118 = add i7 %tmp_115, %tmp_116
+
+ST_9: tmp_1703_s (322)  [1/1] 0.89ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:253  %tmp_1703_s = add i7 %tmp_118, %tmp_117
+
+
+ <State 10>: 3.90ns
+ST_10: StgValue_337 (69)  [1/1] 0.00ns  loc: Accel.cpp:600
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:0  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str1846) nounwind
+
+ST_10: tmp_53 (70)  [1/1] 0.00ns  loc: Accel.cpp:600
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:1  %tmp_53 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str1846)
+
+ST_10: StgValue_339 (71)  [1/1] 0.00ns  loc: Accel.cpp:601
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 64, i32 32, [1 x i8]* @p_str1813) nounwind
+
+ST_10: StgValue_340 (72)  [1/1] 0.00ns  loc: Accel.cpp:601
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:3  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1813) nounwind
+
+ST_10: tmp_95 (199)  [1/1] 0.00ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:130  %tmp_95 = call i8 @_ssdm_op_BitConcatenate.i8.i7.i1(i7 %tmp_93, i1 false)
+
+ST_10: phitmp_cast (200)  [1/1] 0.00ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:131  %phitmp_cast = zext i8 %tmp_95 to i9
+
+ST_10: tmp_96 (201)  [1/1] 1.24ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:132  %tmp_96 = sub i9 64, %phitmp_cast
+
+ST_10: tmp_139_cast (202)  [1/1] 0.00ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:133  %tmp_139_cast = sext i9 %tmp_96 to i10
+
+ST_10: tmp_171_1 (323)  [1/1] 0.00ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:254  %tmp_171_1 = call i8 @_ssdm_op_BitConcatenate.i8.i7.i1(i7 %tmp_1703_s, i1 false)
+
+ST_10: phitmp_1_cast (324)  [1/1] 0.00ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:255  %phitmp_1_cast = zext i8 %tmp_171_1 to i9
+
+ST_10: tmp_172_1 (325)  [1/1] 1.24ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:256  %tmp_172_1 = sub i9 64, %phitmp_1_cast
+
+ST_10: tmp_172_1_cast (326)  [1/1] 0.00ns  loc: Accel.cpp:620
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:257  %tmp_172_1_cast = sext i9 %tmp_172_1 to i10
+
+ST_10: tmp_119 (327)  [1/1] 1.30ns  loc: Accel.cpp:624
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:258  %tmp_119 = add i10 %tmp_139_cast, %tmp_172_1_cast
+
+ST_10: p_cast (328)  [1/1] 0.00ns  loc: Accel.cpp:624
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:259  %p_cast = sext i10 %tmp_119 to i16
+
+ST_10: sum_V_1 (329)  [1/1] 1.36ns  loc: Accel.cpp:624
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:260  %sum_V_1 = add i16 %p_cast, %p_Val2_3
+
+ST_10: empty (330)  [1/1] 0.00ns  loc: Accel.cpp:625
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:261  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1846, i32 %tmp_53)
+
+ST_10: StgValue_353 (332)  [1/1] 0.00ns  loc: Accel.cpp:600
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:263  br label %1
+
+
+ <State 11>: 2.05ns
+ST_11: r_V_11 (341)  [1/1] 0.00ns  loc: Accel.cpp:646
+_ifconv8:7  %r_V_11 = call i15 @_ssdm_op_PartSelect.i15.i16.i32.i32(i16 %p_s, i32 1, i32 15)
+
+ST_11: tmp_87 (342)  [1/1] 0.00ns  loc: Accel.cpp:647
+_ifconv8:8  %tmp_87 = zext i15 %r_V_11 to i64
+
+ST_11: kh_mem_V_addr_1 (343)  [1/1] 0.00ns  loc: Accel.cpp:647
+_ifconv8:9  %kh_mem_V_addr_1 = getelementptr [64 x i64]* %kh_mem_V, i64 0, i64 %tmp_87
+
+ST_11: kh_word_V_2 (344)  [2/2] 2.05ns  loc: Accel.cpp:647
+_ifconv8:10  %kh_word_V_2 = load i64* %kh_mem_V_addr_1, align 8
+
+
+ <State 12>: 2.76ns
+ST_12: kh_off_V_1 (338)  [1/1] 0.00ns  loc: Accel.cpp:634
+_ifconv8:4  %kh_off_V_1 = trunc i16 %p_s to i1
+
+ST_12: kh_word_V_2 (344)  [1/2] 2.05ns  loc: Accel.cpp:647
+_ifconv8:10  %kh_word_V_2 = load i64* %kh_mem_V_addr_1, align 8
+
+ST_12: loc_V_7 (347)  [1/1] 0.00ns  loc: Accel.cpp:654
+_ifconv8:13  %loc_V_7 = trunc i64 %kh_word_V_2 to i16
+
+ST_12: loc_V_8 (348)  [1/1] 0.00ns  loc: Accel.cpp:657
+_ifconv8:14  %loc_V_8 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V_2, i32 32, i32 47)
+
+ST_12: ki_V_2 (351)  [1/1] 0.71ns  loc: Accel.cpp:634
+_ifconv8:17  %ki_V_2 = select i1 %kh_off_V_1, i16 %loc_V_8, i16 %loc_V_7
+
+
+ <State 13>: 4.95ns
+ST_13: tmp_284 (352)  [1/1] 0.00ns  loc: Accel.cpp:624
+_ifconv8:18  %tmp_284 = trunc i16 %p_Val2_3 to i10
+
+ST_13: tmp_109 (353)  [1/1] 0.00ns  loc: Accel.cpp:662
+_ifconv8:19  %tmp_109 = call i20 @_ssdm_op_BitConcatenate.i20.i10.i10(i10 %tmp_284, i10 0)
+
+ST_13: OP1_V (354)  [1/1] 0.00ns  loc: Accel.cpp:662
+_ifconv8:20  %OP1_V = sext i20 %tmp_109 to i36
+
+ST_13: OP2_V (355)  [1/1] 0.00ns  loc: Accel.cpp:662
+_ifconv8:21  %OP2_V = sext i16 %ki_V_2 to i36
+
+ST_13: p_Val2_1 (356)  [2/2] 4.95ns  loc: Accel.cpp:662
+_ifconv8:22  %p_Val2_1 = mul nsw i36 %OP1_V, %OP2_V
+
+
+ <State 14>: 2.05ns
+ST_14: r_V_10 (334)  [1/1] 0.00ns  loc: Accel.cpp:630
+_ifconv8:0  %r_V_10 = call i14 @_ssdm_op_PartSelect.i14.i16.i32.i32(i16 %p_s, i32 2, i32 15)
+
+ST_14: tmp_84 (335)  [1/1] 0.00ns  loc: Accel.cpp:631
+_ifconv8:1  %tmp_84 = zext i14 %r_V_10 to i64
+
+ST_14: kh_mem_V_addr (336)  [1/1] 0.00ns  loc: Accel.cpp:631
+_ifconv8:2  %kh_mem_V_addr = getelementptr [64 x i64]* %kh_mem_V, i64 0, i64 %tmp_84
+
+ST_14: kh_word_V (337)  [2/2] 2.05ns  loc: Accel.cpp:631
+_ifconv8:3  %kh_word_V = load i64* %kh_mem_V_addr, align 8
+
+ST_14: p_Val2_1 (356)  [1/2] 0.00ns  loc: Accel.cpp:662
+_ifconv8:22  %p_Val2_1 = mul nsw i36 %OP1_V, %OP2_V
+
+
+ <State 15>: 4.02ns
+ST_15: kh_word_V (337)  [1/2] 2.05ns  loc: Accel.cpp:631
+_ifconv8:3  %kh_word_V = load i64* %kh_mem_V_addr, align 8
+
+ST_15: kh_off_V (339)  [1/1] 0.00ns  loc: Accel.cpp:634
+_ifconv8:5  %kh_off_V = trunc i16 %p_s to i2
+
+ST_15: tmp_86 (340)  [1/1] 0.76ns  loc: Accel.cpp:635
+_ifconv8:6  %tmp_86 = icmp eq i2 %kh_off_V, 0
+
+ST_15: loc_V (345)  [1/1] 0.00ns  loc: Accel.cpp:636 (grouped into LUT with out node newSel1)
+_ifconv8:11  %loc_V = trunc i64 %kh_word_V to i16
+
+ST_15: tmp_106 (346)  [1/1] 0.76ns  loc: Accel.cpp:637
+_ifconv8:12  %tmp_106 = icmp eq i2 %kh_off_V, 1
+
+ST_15: loc_V_9 (349)  [1/1] 0.00ns  loc: Accel.cpp:638 (grouped into LUT with out node not_s)
+_ifconv8:15  %loc_V_9 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 16, i32 31)
+
+ST_15: tmp_107 (350)  [1/1] 0.76ns  loc: Accel.cpp:639
+_ifconv8:16  %tmp_107 = icmp eq i2 %kh_off_V, -2
+
+ST_15: tmp_110 (357)  [1/1] 0.00ns  loc: Accel.cpp:662 (grouped into LUT with out node p_Val2_2)
+_ifconv8:23  %tmp_110 = zext i36 %p_Val2_1 to i37
+
+ST_15: tmp_230 (358)  [1/1] 0.00ns  loc: Accel.cpp:647 (grouped into LUT with out node p_Val2_2)
+_ifconv8:24  %tmp_230 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V_2, i32 48, i32 63)
+
+ST_15: tmp_231 (359)  [1/1] 0.00ns  loc: Accel.cpp:647 (grouped into LUT with out node p_Val2_2)
+_ifconv8:25  %tmp_231 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V_2, i32 16, i32 31)
+
+ST_15: tmp_232 (360)  [1/1] 0.00ns  loc: Accel.cpp:662 (grouped into LUT with out node p_Val2_2)
+_ifconv8:26  %tmp_232 = select i1 %kh_off_V_1, i16 %tmp_230, i16 %tmp_231
+
+ST_15: tmp_112 (361)  [1/1] 0.00ns  loc: Accel.cpp:662 (grouped into LUT with out node p_Val2_2)
+_ifconv8:27  %tmp_112 = call i28 @_ssdm_op_BitConcatenate.i28.i16.i12(i16 %tmp_232, i12 0)
+
+ST_15: tmp_112_cast (362)  [1/1] 0.00ns  loc: Accel.cpp:662 (grouped into LUT with out node p_Val2_2)
+_ifconv8:28  %tmp_112_cast = sext i28 %tmp_112 to i37
+
+ST_15: p_Val2_2 (363)  [1/1] 1.66ns  loc: Accel.cpp:662 (out node of the LUT)
+_ifconv8:29  %p_Val2_2 = add nsw i37 %tmp_112_cast, %tmp_110
+
+ST_15: p_Val2_6 (364)  [1/1] 0.00ns  loc: Accel.cpp:662
+_ifconv8:30  %p_Val2_6 = call i20 @_ssdm_op_PartSelect.i20.i37.i32.i32(i37 %p_Val2_2, i32 14, i32 33)
+
+ST_15: tmp_114 (365)  [1/1] 1.26ns  loc: Accel.cpp:664
+_ifconv8:31  %tmp_114 = icmp eq i16 %p_s, 0
+
+ST_15: loc_V_10 (366)  [1/1] 0.00ns  loc: Accel.cpp:640 (grouped into LUT with out node not_s)
+_ifconv8:32  %loc_V_10 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 32, i32 47)
+
+ST_15: loc_V_11 (367)  [1/1] 0.00ns  loc: Accel.cpp:642 (grouped into LUT with out node newSel1)
+_ifconv8:33  %loc_V_11 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 48, i32 63)
+
+ST_15: tmp_128_cast (368)  [1/1] 0.00ns  loc: Accel.cpp:664
+_ifconv8:34  %tmp_128_cast = sext i20 %p_Val2_6 to i22
+
+ST_15: tmp_121 (369)  [1/1] 0.00ns  loc: Accel.cpp:664
+_ifconv8:35  %tmp_121 = call i22 @_ssdm_op_BitConcatenate.i22.i16.i6(i16 %p_Val2_7, i6 0)
+
+ST_15: tmp_122 (370)  [1/1] 1.35ns  loc: Accel.cpp:664
+_ifconv8:36  %tmp_122 = icmp sgt i22 %tmp_128_cast, %tmp_121
+
+ST_15: sel_tmp12 (371)  [1/1] 0.00ns  loc: Accel.cpp:635 (grouped into LUT with out node or_cond)
+_ifconv8:37  %sel_tmp12 = xor i1 %tmp_86, true
+
+ST_15: sel_tmp13 (372)  [1/1] 0.00ns  loc: Accel.cpp:637 (grouped into LUT with out node or_cond)
+_ifconv8:38  %sel_tmp13 = and i1 %tmp_106, %sel_tmp12
+
+ST_15: sel_tmp17_demorgan (373)  [1/1] 0.00ns  loc: Accel.cpp:635 (grouped into LUT with out node sel_tmp15)
+_ifconv8:39  %sel_tmp17_demorgan = or i1 %tmp_86, %tmp_106
+
+ST_15: sel_tmp14 (374)  [1/1] 0.00ns  loc: Accel.cpp:635 (grouped into LUT with out node sel_tmp15)
+_ifconv8:40  %sel_tmp14 = xor i1 %sel_tmp17_demorgan, true
+
+ST_15: sel_tmp15 (375)  [1/1] 0.71ns  loc: Accel.cpp:639 (out node of the LUT)
+_ifconv8:41  %sel_tmp15 = and i1 %tmp_107, %sel_tmp14
+
+ST_15: newSel (376)  [1/1] 0.00ns  loc: Accel.cpp:639 (grouped into LUT with out node not_s)
+_ifconv8:42  %newSel = select i1 %sel_tmp15, i16 %loc_V_10, i16 %loc_V_9
+
+ST_15: or_cond (377)  [1/1] 0.71ns  loc: Accel.cpp:639 (out node of the LUT)
+_ifconv8:43  %or_cond = or i1 %sel_tmp15, %sel_tmp13
+
+ST_15: newSel1 (378)  [1/1] 0.71ns  loc: Accel.cpp:635 (out node of the LUT)
+_ifconv8:44  %newSel1 = select i1 %tmp_86, i16 %loc_V, i16 %loc_V_11
+
+ST_15: nc_V_4 (379)  [1/1] 0.00ns  loc: Accel.cpp:639 (grouped into LUT with out node not_s)
+_ifconv8:45  %nc_V_4 = select i1 %or_cond, i16 %newSel, i16 %newSel1
+
+ST_15: not_s (381)  [1/1] 1.26ns  loc: Accel.cpp:644 (out node of the LUT)
+_ifconv8:47  %not_s = icmp slt i16 %p_Val2_3, %nc_V_4
+
+ST_15: tmp47 (388)  [1/1] 0.00ns  loc: Accel.cpp:664 (grouped into LUT with out node sel_tmp25_demorgan)
+_ifconv8:54  %tmp47 = or i1 %tmp_114, %tmp_122
+
+ST_15: sel_tmp25_demorgan (389)  [1/1] 0.71ns  loc: Accel.cpp:664 (out node of the LUT)
+_ifconv8:55  %sel_tmp25_demorgan = or i1 %tmp47, %tmp
+
+
+ <State 16>: 2.76ns
+ST_16: bvh_d_index (380)  [1/1] 0.00ns  loc: Accel.cpp:644
+_ifconv8:46  %bvh_d_index = zext i6 %o_offset_V to i32
+
+ST_16: p_Repl2_s (382)  [1/1] 0.00ns  loc: Accel.cpp:644
+_ifconv8:48  %p_Repl2_s = zext i1 %not_s to i64
+
+ST_16: p_Result_s (383)  [1/1] 0.00ns  loc: Accel.cpp:644
+_ifconv8:49  %p_Result_s = call i64 @_ssdm_op_BitSet.i64.i64.i32.i64(i64 %o_word_V_4, i32 %bvh_d_index, i64 %p_Repl2_s)
+
+ST_16: prediction_V (384)  [1/1] 0.00ns  loc: Accel.cpp:665 (grouped into LUT with out node prediction_V_2)
+_ifconv8:50  %prediction_V = trunc i16 %p_s to i8
+
+ST_16: p_Val2_s_51 (385)  [1/1] 0.00ns  loc: Accel.cpp:666 (grouped into LUT with out node best_out_V_2)
+_ifconv8:51  %p_Val2_s_51 = call i14 @_ssdm_op_PartSelect.i14.i37.i32.i32(i37 %p_Val2_2, i32 20, i32 33)
+
+ST_16: best_out_V (386)  [1/1] 0.00ns  loc: Accel.cpp:666 (grouped into LUT with out node best_out_V_2)
+_ifconv8:52  %best_out_V = sext i14 %p_Val2_s_51 to i16
+
+ST_16: best_out_V_1 (387)  [1/1] 0.00ns  loc: Accel.cpp:582 (grouped into LUT with out node best_out_V_2)
+_ifconv8:53  %best_out_V_1 = select i1 %tmp, i16 %p_Val2_7, i16 %best_out_V
+
+ST_16: best_out_V_2 (390)  [1/1] 0.71ns  loc: Accel.cpp:664 (out node of the LUT)
+_ifconv8:56  %best_out_V_2 = select i1 %sel_tmp25_demorgan, i16 %best_out_V_1, i16 %p_Val2_7
+
+ST_16: o_word_V_2 (391)  [1/1] 0.00ns  loc: Accel.cpp:582 (grouped into LUT with out node o_word_V_3)
+_ifconv8:57  %o_word_V_2 = select i1 %tmp, i64 %p_Result_s, i64 %o_word_V_4
+
+ST_16: o_word_V_3 (392)  [1/1] 0.71ns  loc: Accel.cpp:664 (out node of the LUT)
+_ifconv8:58  %o_word_V_3 = select i1 %sel_tmp25_demorgan, i64 %o_word_V_2, i64 %o_word_V_4
+
+ST_16: prediction_V_1 (393)  [1/1] 0.00ns  loc: Accel.cpp:582 (grouped into LUT with out node prediction_V_2)
+_ifconv8:59  %prediction_V_1 = select i1 %tmp, i8 %p_Val2_s, i8 %prediction_V
+
+ST_16: prediction_V_2 (394)  [1/1] 0.71ns  loc: Accel.cpp:664 (out node of the LUT)
+_ifconv8:60  %prediction_V_2 = select i1 %sel_tmp25_demorgan, i8 %prediction_V_1, i8 %p_Val2_s
+
+ST_16: StgValue_418 (395)  [1/1] 0.00ns  loc: Accel.cpp:670
+_ifconv8:61  br i1 %d_o_idx_V_read, label %branch7, label %branch6
+
+ST_16: StgValue_419 (397)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch6:0  br i1 %tmp_120, label %branch334, label %branch233
+
+ST_16: StgValue_420 (399)  [1/1] 2.05ns  loc: Accel.cpp:670
+branch233:0  store i64 %o_word_V_3, i64* %dmem_0_0_V_addr, align 8
+
+ST_16: StgValue_421 (400)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch233:1  br label %branch632
+
+ST_16: StgValue_422 (402)  [1/1] 2.05ns  loc: Accel.cpp:670
+branch334:0  store i64 %o_word_V_3, i64* %dmem_0_1_V_addr, align 8
+
+ST_16: StgValue_423 (403)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch334:1  br label %branch632
+
+ST_16: StgValue_424 (405)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch632:0  br label %._crit_edge149022
+
+ST_16: StgValue_425 (407)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch7:0  br i1 %tmp_120, label %branch754, label %branch653
+
+ST_16: StgValue_426 (409)  [1/1] 2.05ns  loc: Accel.cpp:670
+branch653:0  store i64 %o_word_V_3, i64* %dmem_1_0_V_addr, align 8
+
+ST_16: StgValue_427 (410)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch653:1  br label %branch752
+
+ST_16: StgValue_428 (412)  [1/1] 2.05ns  loc: Accel.cpp:670
+branch754:0  store i64 %o_word_V_3, i64* %dmem_1_1_V_addr, align 8
+
+ST_16: StgValue_429 (413)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch754:1  br label %branch752
+
+ST_16: StgValue_430 (415)  [1/1] 0.00ns  loc: Accel.cpp:670
+branch752:0  br label %._crit_edge149022
+
+ST_16: empty_52 (417)  [1/1] 0.00ns  loc: Accel.cpp:671
+._crit_edge149022:0  %empty_52 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str1845, i32 %tmp_49)
+
+ST_16: StgValue_432 (418)  [1/1] 0.00ns  loc: Accel.cpp:592
+._crit_edge149022:1  br label %0
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 0.625ns.
+
+ <State 1>: 0.892ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('best_out.V') with incoming values : ('best_out.V', Accel.cpp:664) [27]  (0.892 ns)
+
+ <State 2>: 3.41ns
+The critical path consists of the following:
+	'phi' operation ('o.V') with incoming values : ('o.V', Accel.cpp:592) [29]  (0 ns)
+	'add' operation ('r.V', Accel.cpp:594) [41]  (1.36 ns)
+	'getelementptr' operation ('dmem_1_1_V_addr', Accel.cpp:596) [50]  (0 ns)
+	'load' operation ('dmem_1_1_V_load', Accel.cpp:596) on array 'dmem_1_1_V' [51]  (2.05 ns)
+
+ <State 3>: 4.18ns
+The critical path consists of the following:
+	'load' operation ('dmem_0_1_V_load', Accel.cpp:596) on array 'dmem_0_1_V' [53]  (2.05 ns)
+	'select' operation ('sel_tmp2', Accel.cpp:596) [56]  (0.71 ns)
+	'select' operation ('sel_tmp5', Accel.cpp:596) [59]  (0.71 ns)
+	'select' operation ('o_word.V', Accel.cpp:596) [61]  (0.71 ns)
+
+ <State 4>: 3.53ns
+The critical path consists of the following:
+	'phi' operation ('i.V') with incoming values : ('i.V', Accel.cpp:600) [65]  (0 ns)
+	'add' operation ('r.V', Accel.cpp:601) [74]  (1.48 ns)
+	'getelementptr' operation ('wt_mem_0_V_addr', Accel.cpp:607) [84]  (0 ns)
+	'load' operation ('wt_mem_0_V_load', Accel.cpp:607) on array 'wt_mem_0_V' [85]  (2.05 ns)
+
+ <State 5>: 2.76ns
+The critical path consists of the following:
+	'load' operation ('dmem_1_0_V_load_1', Accel.cpp:606) on array 'dmem_1_0_V' [81]  (2.05 ns)
+	'select' operation ('in_wrd_V_0_phi', Accel.cpp:606) [83]  (0 ns)
+	'xor' operation ('r_V_s', Accel.cpp:609) [86]  (0.71 ns)
+
+ <State 6>: 2.08ns
+The critical path consists of the following:
+	'sub' operation ('x_V_6', Accel.cpp:612) [121]  (2.08 ns)
+
+ <State 7>: 3.66ns
+The critical path consists of the following:
+	'add' operation ('x_V', Accel.cpp:613) [161]  (2.08 ns)
+	'add' operation ('tmp_134_cast', Accel.cpp:614) [167]  (1.58 ns)
+
+ <State 8>: 3.5ns
+The critical path consists of the following:
+	'add' operation ('x_V_3', Accel.cpp:615) [187]  (2.02 ns)
+	'add' operation ('x_V_4', Accel.cpp:616) [191]  (1.48 ns)
+
+ <State 9>: 2.13ns
+The critical path consists of the following:
+	'add' operation ('tmp_92', Accel.cpp:615) [197]  (1.24 ns)
+	'add' operation ('tmp_93', Accel.cpp:620) [198]  (0.885 ns)
+
+ <State 10>: 3.9ns
+The critical path consists of the following:
+	'sub' operation ('tmp_96', Accel.cpp:620) [201]  (1.24 ns)
+	'add' operation ('tmp_119', Accel.cpp:624) [327]  (1.3 ns)
+	'add' operation ('sum_V_1', Accel.cpp:624) [329]  (1.36 ns)
+
+ <State 11>: 2.05ns
+The critical path consists of the following:
+	'getelementptr' operation ('kh_mem_V_addr_1', Accel.cpp:647) [343]  (0 ns)
+	'load' operation ('kh_word.V', Accel.cpp:647) on array 'kh_mem_V' [344]  (2.05 ns)
+
+ <State 12>: 2.76ns
+The critical path consists of the following:
+	'load' operation ('kh_word.V', Accel.cpp:647) on array 'kh_mem_V' [344]  (2.05 ns)
+	'select' operation ('ki.V', Accel.cpp:634) [351]  (0.71 ns)
+
+ <State 13>: 4.95ns
+The critical path consists of the following:
+	'mul' operation ('__Val2__', Accel.cpp:662) [356]  (4.95 ns)
+
+ <State 14>: 2.05ns
+The critical path consists of the following:
+	'getelementptr' operation ('kh_mem_V_addr', Accel.cpp:631) [336]  (0 ns)
+	'load' operation ('kh_word.V', Accel.cpp:631) on array 'kh_mem_V' [337]  (2.05 ns)
+
+ <State 15>: 4.02ns
+The critical path consists of the following:
+	'load' operation ('kh_word.V', Accel.cpp:631) on array 'kh_mem_V' [337]  (2.05 ns)
+	'select' operation ('newSel1', Accel.cpp:635) [378]  (0.71 ns)
+	'select' operation ('nc.V', Accel.cpp:639) [379]  (0 ns)
+	'icmp' operation ('not_s', Accel.cpp:644) [381]  (1.26 ns)
+
+ <State 16>: 2.76ns
+The critical path consists of the following:
+	'select' operation ('o_word.V', Accel.cpp:582) [391]  (0 ns)
+	'select' operation ('o_word.V', Accel.cpp:664) [392]  (0.71 ns)
+	'store' operation (Accel.cpp:670) of variable 'o_word.V', Accel.cpp:664 on array 'dmem_0_0_V' [399]  (2.05 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

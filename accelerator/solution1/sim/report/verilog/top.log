@@ -1,0 +1,9 @@
+@I [SIM-47] Using XSIM for RTL simulation.
+@I [SIM-14] Instrumenting C test bench ...
+   Build using "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc/bin/g++"
+   Compiling Accel.cpp_pre.cpp.tb.cpp
+@E [SIM-317] C++ compile error.
+@E [SIM-321] EXE file generate failed.
+@E [SIM-321] EXE file generate failed.
+@E [SIM-331] Aborting co-simulation: C simulation failed, compilation errors.
+@E [SIM-4] *** C/RTL co-simulation finished: FAIL ***

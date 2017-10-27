@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Mon Oct 23 20:47:00 2017
+# Process ID: 11079
+# Current directory: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/dmem_i_synth_1
+# Command line: vivado -log dmem_i.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dmem_i.tcl
+# Log file: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/dmem_i_synth_1/dmem_i.vds
+# Journal file: /home/yuzou/bnn-fpga-k7/VerilogPrj/VerilogPrj.runs/dmem_i_synth_1/vivado.jou
+#-----------------------------------------------------------
+source dmem_i.tcl -notrace

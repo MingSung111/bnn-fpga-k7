@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="Accel.cpp" path="/home/yuzou/bnn-fpga-k7/Accel.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="AccelPrint.cpp" path="/home/yuzou/bnn-fpga-k7/AccelPrint.cpp"/>
+    <originFiles name="AccelSchedule.cpp" path="/home/yuzou/bnn-fpga-k7/AccelSchedule.cpp"/>
+    <originFiles name="AccelTest.cpp" path="/home/yuzou/bnn-fpga-k7/AccelTest.cpp"/>
+    <originFiles name="Common.cpp" path="/home/yuzou/bnn-fpga-k7/Common.cpp"/>
+    <originFiles name="Dense.cpp" path="/home/yuzou/bnn-fpga-k7/Dense.cpp"/>
+    <originFiles name="Timer.cpp" path="/home/yuzou/bnn-fpga-k7/Timer.cpp"/>
+    <originFiles name="accel_test_random.cpp" path="/home/yuzou/bnn-fpga-k7/accel_test_random.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

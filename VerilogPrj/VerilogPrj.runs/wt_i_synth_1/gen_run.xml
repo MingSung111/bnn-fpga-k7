@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="wt_i_synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1508808079">
+  <File Type="VDS-TIMING-PB" Name="wt_i_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="wt_i_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="wt_i.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="wt_i_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="wt_i_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="wt_i_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="wt_i.vds"/>
+  <File Type="PA-TCL" Name="wt_i.tcl"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/wt_i">
+    <File Path="$PSRCDIR/sources_1/ip/wt_i/wt_i.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="wt_i"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/wt_i">
+    <File Path="$PSRCDIR/sources_1/ip/wt_i/wt_i.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="wt_i"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

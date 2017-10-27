@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="kh_i_synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1508808066">
+  <File Type="VDS-TIMING-PB" Name="kh_i_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="kh_i_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="kh_i.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="kh_i_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="kh_i_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="kh_i_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="kh_i.vds"/>
+  <File Type="PA-TCL" Name="kh_i.tcl"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/kh_i">
+    <File Path="$PSRCDIR/sources_1/ip/kh_i/kh_i.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="kh_i"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/kh_i">
+    <File Path="$PSRCDIR/sources_1/ip/kh_i/kh_i.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="kh_i"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

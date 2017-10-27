@@ -1,0 +1,15 @@
+top_mul_mul_20s_1bkb
+top_mul_10ns_5ns_bek
+top_mux_83_2_1
+top_mul_15ns_5ns_bfk
+bin_conv_fixed_bucud
+top_mux_325_20_1
+top_mux_164_64_1
+top_mac_muladd_15bgk
+top_kh_mem_V
+top_wt_mem_V_0
+top_dmem_V_0_0
+bin_dense
+bin_conv
+fp_conv
+top

@@ -1,0 +1,2 @@
+dmem_o.v,verilog,xil_defaultlib,../../../../VerilogPrj.srcs/sources_1/ip/dmem_o/sim/dmem_o.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v
